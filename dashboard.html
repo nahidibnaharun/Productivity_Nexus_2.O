@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Productivity Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="dashboard.css"> 
+</head>
+<body class="bg-gray-100">
+    <div class="gradient-bg text-white py-6 px-4 shadow-lg">
+        <h1 class="text-3xl font-bold text-center mb-2">Productivity Dashboard</h1>
+        <div id="motivationalQuote" class="text-center italic"></div>
+        <button class="logout-button" onclick="logout()">Logout</button> 
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="far fa-clock mr-2"></i>Clock</h2>
+                <div id="clock" class="text-4xl font-bold text-center mb-2"></div>
+                <div id="date" class="text-center text-gray-600"></div>
+            </div>
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-tasks mr-2"></i>Tasks</h2>
+                <ul id="taskList" class="mb-4"></ul>
+                <input type="text" id="newTask" placeholder="New task" class="w-full p-2 mb-2 border rounded">
+                <select id="taskType" class="w-full p-2 mb-2 border rounded">
+                    <option value="Work">Work</option>
+                    <option value="School">School</option>
+                    <option value="Personal">Personal</option>
+                </select>
+                <select id="taskImportance" class="w-full p-2 mb-2 border rounded">
+                    <option value="1">1 (Low)</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5 (High)</option>
+                </select>
+                <button onclick="addTask()" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">Add Task</button>
+            </div>
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-calendar-alt mr-2"></i>Upcoming Events</h2>
+                <ul id="eventList" class="mb-4"></ul> 
+                <input type="text" id="newEvent" placeholder="New event" class="w-full p-2 mb-2 border rounded">
+                <input type="date" id="eventDate" class="w-full p-2 mb-2 border rounded">
+                <button onclick="addEvent()" class="w-full bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600">Add Event</button>
+            </div>
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="far fa-bell mr-2"></i>Reminders</h2>
+                <ul id="reminderList" class="mb-4"></ul>
+                <input type="text" id="newReminder" placeholder="New reminder" class="w-full p-2 mb-2 border rounded">
+                <input type="datetime-local" id="reminderTime" class="w-full p-2 mb-2 border rounded">
+                <button onclick="addReminder()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Add Reminder</button>
+            </div>
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-chart-line mr-2"></i>Productivity Score</h2>
+                <div class="text-center">
+                    <div id="productivityScore" class="text-5xl font-bold mb-2">0%</div>
+                    <div class="progress-bar">
+                        <div id="productivityProgress" class="progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-hourglass-half mr-2"></i>Focus Timer</h2>
+                <div class="timer-controls">
+                    <button onclick="startFocusTimer()" class="start-button">Start</button>
+                    <button onclick="stopFocusTimer()" class="stop-button">Stop</button>
+                </div>
+                <div id="focusTimer" class="text-4xl font-bold text-center mb-4">25:00</div>
+                <div class="flex justify-center">
+                    <input type="number" id="timerMinutes" value="25" min="1" class="w-16 border rounded px-2 py-1">
+                    <button onclick="updateTimer()" class="bg-purple-500 text-white p-2 rounded hover:bg-purple-600">Set Timer</button>
+                </div>
+            </div>
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-tint mr-2"></i>Water Intake Tracker</h2>
+                <div id="waterIntake" class="text-3xl font-bold text-center mb-2">0 / 8 glasses</div>
+                <div class="progress-bar mb-4">
+                    <div id="waterProgress" class="progress" style="width: 0%"></div>
+                </div>
+                <button onclick="addWater()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Add Glass</button>
+            </div>
+
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-cloud-sun-rain mr-2"></i>Weather</h2>
+                <select id="citySelect" class="w-full p-2 mb-4 border rounded" onchange="fetchWeather()">
+                    <option value="Dhaka,BD">Dhaka,BD</option>
+                    <option value="Chittagong,BD">Chittagong,BD</option>
+                    <option value="Khulna,BD">Khulna,BD</option>
+                    <option value="Rangpur,BD">Rangpur,BD</option>
+                    <option value="Bogra,BD">Bogra,BD</option>
+                    <option value="Mymensingh,BD">Mymensingh,BD</option>
+                    <option value="Netrakona,BD">Netrakona,BD</option>
+                    <option value="Sylhet,BD">Sylhet,BD</option>
+                    <option value="Habiganj,BD">Habiganj,BD</option>
+                    <option value="Rajshahi,BD">Rajshahi,BD</option>
+                    <option value="Tongi,BD">Tongi,BD</option>
+                    <option value="Narsingdi,BD">Narsingdi,BD</option>
+                    <option value="Farīdpur,BD">Farīdpur,BD</option>
+                    <option value="Jessore,BD">Jessore,BD</option>
+                    <option value="Comilla,BD">Comilla,BD</option>
+                    <option value="Feni,BD">Feni,BD</option>
+                    <option value="Bāndarban,BD">Bāndarban,BD</option>
+                    <option value="Cox's Bāzār,BD">Cox's Bāzār,BD</option>
+                </select>
+                <div id="weather" class="text-center">
+                    <p id="weatherLocation" class="text-2xl font-bold"></p>
+                    <p id="weatherTemp" class="text-3xl font-bold"></p>
+                    <p id="weatherDescription" class="text-xl"></p>
+                </div>
+            </div>
+
+            <div class="widget p-6 w-full lg:w-auto">
+                <h2 class="text-xl font-semibold mb-4"><i class="far fa-sticky-note mr-2"></i>Quick Notes</h2>
+                <textarea id="quickNotes" rows="5" placeholder="Jot down your thoughts..." class="w-full p-2 mb-2 border rounded"></textarea>
+                <button onclick="saveNotes()" class="w-full bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">Save Notes</button>
+            </div>
+
+            <div class="widget p-6"> 
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-share-alt mr-2"></i>Social</h2>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com/messages" target="_blank" class="facebook"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="https://mail.google.com" target="_blank" class="gmail"><i class="fab fa-google"></i> Gmail</a></li>
+                    <li><a href="https://web.telegram.org" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i> Telegram</a></li>
+                    <li><a href="https://www.x.com" target="_blank" class="twitter"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
+                    <li><a href="https://www.notion.so" target="_blank" class="notion"><i class="fas fa-book"></i> Notion</a></li>
+                </ul>
+            </div> 
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
