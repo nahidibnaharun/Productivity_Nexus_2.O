@@ -1,83 +1,75 @@
 /* --- General Styles & Background Animation --- */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  background-size: 400% 400%;
+  animation: gradientAnimation 30s ease infinite; /* Slower animation */
 }
 
 @keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* --- Main Container (No Background) --- */
 .container {
-    background: none;
+  background: none;
 }
 
 /* --- Gradient Header --- */
 .gradient-bg {
-    background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    color: white;
-    padding: 20px 40px;
-    border-radius: 10px 10px 0 0;
-    text-align: center;
-    position: relative;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  background-size: 400% 400%;
+  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  color: white;
+  padding: 20px 40px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  position: relative;
 }
 
 .gradient-bg h1 {
-    font-size: 2.2em; 
-    font-weight: bold;
+  font-size: 2.2em;
+  font-weight: bold;
 }
 
 .gradient-bg #motivationalQuote {
-    font-size: 1.1em;
-    font-weight: bold;
-}
-
-/* --- Logout Button (Static Gradient) --- */
-.logout-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    background: linear-gradient(135deg, #ff6b6b, #ff9f43, #ee5253);  
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 /* --- Widget Styles --- */
 .widget {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    padding: 20px;
-    margin-bottom: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .widget:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* --- Widget Titles --- */
 .widget h2 {
-    font-size: 1.8em;
-    color: transparent;
-    background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    margin-bottom: 15px;
+  font-size: 1.8em;
+  color: transparent;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  margin-bottom: 15px;
 }
 
 /* --- All Buttons (Common Styles) --- */
@@ -85,91 +77,158 @@ body {
 .widget button,
 .flex button,
 .social-links a,
-li button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 10px;
+li button,
+.logout-button {
+  padding: 12px 24px; /* Slightly larger padding */
+  border: none;
+  border-radius: 8px; /* Slightly more rounded corners */
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-size: 200% 100%;
+  animation: buttonGradientAnimation 6s linear infinite; /* Faster animation */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.timer-controls button:hover,
+.widget button:hover,
+.flex button:hover,
+.social-links a:hover,
+li button:hover,
+.logout-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes buttonGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* --- Specific Button Gradients (3-color) --- */
 .timer-controls button {
-    background: linear-gradient(135deg, #4CAF50, #388E3C, #2E7D32); /* Green */
+  background-image: linear-gradient(135deg, #1f23f0, #5413ec, #14f7eb);
 }
 
 .timer-controls .stop-button {
-    background: linear-gradient(135deg, #f44336, #d32f2f, #b71c1c); /* Red */
+  background-image: linear-gradient(135deg, #00e1ff, #8e04ff, #3700ff);
 }
 
 .flex.justify-center button {
-    background: linear-gradient(135deg, #9C27B0, #8E24AA, #7B1FA2); /* Purple */
+  background-image: linear-gradient(135deg, #d914fc, #ff8800, #a807ff);
 }
 
-.widget:nth-child(4) button { background: linear-gradient(135deg, #337ab7, #286090, #1a4767); } /* Reminders - Blue */
-.widget:nth-child(2) button { background: linear-gradient(135deg, #5cb85c, #4cae4c, #398439); } /* Tasks - Green */
-.widget:nth-child(7) button { background: linear-gradient(135deg, #007bff, #0062cc, #004999); } /* Water - Blue */
-.widget:nth-child(3) button { background: linear-gradient(135deg, #4b77be, #365899, #213970); } /* Events - Blue */
-.widget:nth-child(8) button { background: linear-gradient(135deg, #f0ad4e, #ec971f, #d58512); } /* Notes - Yellow */ 
+.widget:nth-child(4) button {
+  background-image: linear-gradient(135deg, #f86464, #ff1414, #0073ff);
+}
+
+.widget:nth-child(2) button {
+  background-image: linear-gradient(135deg, #2bff00, #d3ff0dd8, #03f303);
+}
+
+.widget:nth-child(7) button {
+  background-image: linear-gradient(135deg, #5900ff, #05ffd5, #b13ddf);
+}
+
+.widget:nth-child(3) button {
+  background-image: linear-gradient(135deg, #fbff00, #004cff, #ffe607);
+}
+
+/* --- Widget:nth-child(8) Button (Save Notes button) --- */
+.widget:nth-child(8) button.save-notes-button {
+  background-image: linear-gradient(135deg, #f44336, #e91e63, #9c27b0); /* New gradient colors */
+  background-size: 200% 100%; /* Same as other animated buttons */
+  animation: buttonGradientAnimation 6s linear infinite; /* Same animation as other buttons */
+}
 
 /* --- Social Links with Animated Gradients --- */
 .social-links a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    background-size: 200% 100%;
-    transition: background-size 0.3s ease; 
+  display: block;
+  color: white;
+  text-decoration: none;
 }
 
-.social-links .facebook { background: linear-gradient(135deg, #3b5998, #8b008b); } 
-.social-links .gmail    { background: linear-gradient(135deg, #DB4437, #ff0000); } 
-.social-links .telegram { background: linear-gradient(135deg, #0088cc, #0000ff); } 
-.social-links .twitter  { background: linear-gradient(135deg, #1DA1F2, #000080); }
-.social-links .notion   { background: linear-gradient(135deg, #702600, #800000); } 
+.social-links .facebook {
+  background-image: linear-gradient(135deg, #052aff, #4c00ffbd, #0206ff);
+}
+.social-links .gmail {
+  background-image: linear-gradient(135deg, #ff0000, #ff000093, #ff0505);
+}
+.social-links .telegram {
+  background-image: linear-gradient(135deg, #00aaff, #0d47a1, #0a43ff);
+}
+.social-links .twitter {
+  background-image: linear-gradient(135deg, #00eeff, #0d47a1, #00f7ff);
+}
+.social-links .notion {
+  background-image: linear-gradient(135deg, #000000, #3801ff, #000000);
+}
+.social-links .whatsapp {
+  background-image: linear-gradient(135deg, #00ff0d, #13733b, #00ff4c);
+}
 
-.social-links a:hover {
-    background-size: 400% 100%; 
+/* --- Logout Button --- */
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-image: linear-gradient(135deg, #0004ff, #4c00ff, #feb47b, #ff4e22);
 }
 
 /* --- Progress Bars with Background Animation --- */
 .progress {
-    height: 10px;
-    border-radius: 9999px;
-    overflow: hidden;
-    position: relative;
-    background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
-    background-size: 400% 400%;
-    animation: progressBackgroundAnimation 15s ease infinite;
+  height: 10px;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  background-size: 400% 400%;
+  animation: progressBackgroundAnimation 30s ease infinite; /* Animation slowed down */
 }
 
 .progress > div {
-    height: 100%;
-    background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
-    background-size: 400% 400%;
-    animation: gradientFill 1s ease-out;
-    transition: width 0.5s ease-in-out;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  background-size: 400% 400%;
+  animation: gradientFill 1s ease-out;
+  transition: width 0.5s ease-in-out;
 }
 
 @keyframes gradientFill {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes progressBackgroundAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* --- Align Set Timer button --- */
 .flex.justify-center button {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 /* --- Original Delete Button Styles (from Tailwind CSS) --- */
-li .delete-button, 
+li .delete-button,
 .flex .text-red-500 {
-    /* Use default Tailwind styles for delete buttons */ 
-} 
+  /* Use default Tailwind styles for delete buttons */
+}
