@@ -137,12 +137,7 @@ function updateFocusTimer() {
     document.getElementById('focusTimer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-// Quick Notes
-function saveNotes() {
-    const quickNotes = document.getElementById('quickNotes').value;
-    localStorage.setItem('quickNotes', quickNotes);
-    alert('Notes saved!');
-}
+
 
 // Logout
 function logout() {
@@ -190,10 +185,7 @@ window.onload = function() {
     updateClockAndDate();
     updateProductivityScore();
     const savedNotes = localStorage.getItem('quickNotes');
-    if (savedNotes) {
-        document.getElementById('quickNotes').value = savedNotes;
-    }
-
+   
     // Initialize Weather
     fetchWeather();
 
@@ -207,6 +199,8 @@ window.onload = function() {
             addReminder();
         }
     });
+
+    initCalculator(); // Initialize the calculator widget
 };
 
 // Timer updates
@@ -236,3 +230,136 @@ function deleteEvent(button) {
     const li = button.parentNode;
     li.remove();
 }
+
+// Book Tracker
+let books = []; // Array to store book data
+
+function addBook() {
+    const bookNameInput = document.getElementById('newBookName');
+    const bookDateTimeInput = document.getElementById('bookDateTime');
+    const bookList = document.getElementById('bookList');
+
+    if (bookNameInput.value.trim() !== '' && bookDateTimeInput.value.trim() !== '') {
+        const newBook = {
+            name: bookNameInput.value,
+            dateTime: new Date(bookDateTimeInput.value)
+        };
+
+        books.push(newBook);
+        updateBookList();
+
+        bookNameInput.value = '';
+        bookDateTimeInput.value = '';
+    }
+}
+
+function updateBookList() {
+    const bookList = document.getElementById('bookList');
+    bookList.innerHTML = ''; // Clear the list
+
+    // Sort books by date/time (ascending)
+    books.sort((a, b) => a.dateTime - b.dateTime);
+
+    books.forEach((book, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${index + 1}. ${book.name} - ${book.dateTime.toLocaleString()}`;
+        bookList.appendChild(li);
+    });
+}
+
+// Calculator
+function initCalculator() {
+    let calcInput = document.getElementById('calcInput');
+    let calcValue = '';
+
+    document.querySelectorAll('.calc-button').forEach(button => {
+        button.addEventListener('click', function() {
+            let value = this.textContent;
+
+            if (value === '=') {
+                try {
+                    calcValue = eval(calcValue);
+                } catch {
+                    calcValue = 'Error';
+                }
+            } else if (value === 'Clear') {
+                calcValue = '';
+            } else {
+                calcValue += value;
+            }
+
+            calcInput.value = calcValue;
+        });
+    });
+}
+// Mindfulness & Meditation Widget Script
+
+let breathingInterval;
+let isBreathing = false;
+let cycles = 0;
+
+function startBreathingExercise() {
+    if (isBreathing) {
+        stopBreathingExercise();
+    } else {
+        isBreathing = true;
+        document.getElementById('startBreathing').textContent = 'Stop Exercise';
+        breathingCycle();
+        breathingInterval = setInterval(breathingCycle, 12000); // 12 seconds per full cycle
+    }
+}
+
+function breathingCycle() {
+    const breathingText = document.getElementById('breathingText');
+    const breathingCircle = document.getElementById('breathingCircle');
+
+    // Breathe In
+    breathingText.textContent = 'Breathe In';
+    breathingCircle.classList.remove('exhale', 'hold');
+    breathingCircle.classList.add('inhale');
+
+    // Hold
+    setTimeout(() => {
+        breathingText.textContent = 'Hold';
+        breathingCircle.classList.remove('inhale', 'exhale');
+        breathingCircle.classList.add('hold');
+    }, 4000);
+
+    // Breathe Out
+    setTimeout(() => {
+        breathingText.textContent = 'Breathe Out';
+        breathingCircle.classList.remove('inhale', 'hold');
+        breathingCircle.classList.add('exhale');
+    }, 8000);
+
+    // Increment cycle counter
+    setTimeout(() => {
+        cycles++;
+        document.getElementById('cycleCounter').textContent = `Cycles: ${cycles}`;
+    }, 11900);
+}
+
+function stopBreathingExercise() {
+    clearInterval(breathingInterval);
+    document.getElementById('startBreathing').textContent = 'Start Exercise';
+    document.getElementById('breathingText').textContent = 'Breathe In';
+    document.getElementById('breathingCircle').classList.remove('inhale', 'hold', 'exhale');
+    isBreathing = false;
+}
+
+function resetBreathingExercise() {
+    stopBreathingExercise();
+    cycles = 0;
+    document.getElementById('cycleCounter').textContent = 'Cycles: 0';
+}
+// Notes
+function saveNotes() {
+    const notes = document.getElementById('quickNotes').value;
+    localStorage.setItem('quickNotes', notes);
+}
+
+
+// Add these to your window.onload function
+document.getElementById('startBreathing').addEventListener('click', startBreathingExercise);
+document.getElementById('resetBreathing').addEventListener('click', resetBreathingExercise);
+
