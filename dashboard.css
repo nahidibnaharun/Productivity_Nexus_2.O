@@ -60,6 +60,86 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/*Breathing Circle*/
+.breathing-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #4299e1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 4s ease-in-out;
+}
+
+.breathing-circle.inhale {
+    width: 150px;
+    height: 150px;
+}
+
+.breathing-circle.hold {
+    width: 150px;
+    height: 150px;
+}
+
+.breathing-circle.exhale {
+    width: 100px;
+    height: 100px;
+}
+
+#breathingExercise button {
+    background-image: linear-gradient(135deg, #4299e1, #667eea, #764ba2);
+    background-size: 200% 100%;
+    animation: buttonGradientAnimation 6s linear infinite;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#breathingExercise button:hover {
+    transform: scale(1.05);
+}
+/* Notes Widget Styles */
+.widget:nth-child(8) { /* Adjust the nth-child selector if your Notes widget is in a different position */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.widget:nth-child(8):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.widget:nth-child(8) h2 {
+  font-size: 1.8em;
+  color: transparent;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  margin-bottom: 15px;
+}
+
+.widget:nth-child(8) textarea {
+  /* Style the textarea for notes */
+  resize: vertical; /* Allow vertical resizing */
+  min-height: 100px; /* Set a minimum height for the textarea */
+}
+
+.widget:nth-child(8) button.save-notes-button {
+  background-image: linear-gradient(
+    135deg,
+    #2e3192,
+    #1bffff,
+    #9c27b0
+  ); /* New gradient colors */
+  background-size: 200% 100%; /* Same as other animated buttons */
+  animation: buttonGradientAnimation 6s linear infinite; /* Same animation as other buttons */
+}
 /* --- Widget Titles --- */
 .widget h2 {
   font-size: 1.8em;
@@ -130,7 +210,7 @@ li button:hover,
 }
 
 .widget:nth-child(2) button {
-  background-image: linear-gradient(135deg, #2bff00, #d3ff0dd8, #03f303);
+  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303);
 }
 
 .widget:nth-child(7) button {
@@ -138,12 +218,17 @@ li button:hover,
 }
 
 .widget:nth-child(3) button {
-  background-image: linear-gradient(135deg, #fbff00, #004cff, #ffe607);
+  background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607);
 }
 
 /* --- Widget:nth-child(8) Button (Save Notes button) --- */
 .widget:nth-child(8) button.save-notes-button {
-  background-image: linear-gradient(135deg, #f44336, #e91e63, #9c27b0); /* New gradient colors */
+  background-image: linear-gradient(
+    135deg,
+    #2e3192,
+    #1bffff,
+    #9c27b0
+  ); /* New gradient colors */
   background-size: 200% 100%; /* Same as other animated buttons */
   animation: buttonGradientAnimation 6s linear infinite; /* Same animation as other buttons */
 }
@@ -231,4 +316,243 @@ li button:hover,
 li .delete-button,
 .flex .text-red-500 {
   /* Use default Tailwind styles for delete buttons */
+}
+
+/* --- Calculator Button Styles --- */
+#calcInput {
+  font-size: 2em; /* Increase font size for the calculator screen */
+}
+
+.calc-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  background-size: 200% 100%;
+  animation: buttonGradientAnimation 6s linear infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.calc-button:hover {
+  transform: scale(1.05);
+}
+
+/* --- Specific Colors for Calculator Buttons --- */
+.calc-button:nth-child(1),
+.calc-button:nth-child(2),
+.calc-button:nth-child(3),
+.calc-button:nth-child(5),
+.calc-button:nth-child(6),
+.calc-button:nth-child(7),
+.calc-button:nth-child(9),
+.calc-button:nth-child(10),
+.calc-button:nth-child(11) {
+  background-image: linear-gradient(135deg, #000000, #3801ff, #000000);
+}
+
+.calc-button:nth-child(4),
+.calc-button:nth-child(8),
+.calc-button:nth-child(12),
+.calc-button:nth-child(16) {
+  background-image: linear-gradient(135deg, #00ff0d, #13733b, #00ff4c);
+}
+
+.calc-button:nth-child(13),
+.calc-button:nth-child(14) {
+  background-image: linear-gradient(135deg, #0400ff, #000000, #7801ff);
+}
+
+.calc-button:nth-child(15) {
+  background-image: linear-gradient(135deg, #ff0707, #00ff0d, #2294ff);
+}
+
+.calc-button:nth-child(17) {
+  background-image: linear-gradient(135deg, #ff0000, #ff000093, #ff0505);
+}
+/* Book Tracker Widget Styles */
+.book-tracker {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.book-tracker:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-tracker h2 {
+  font-size: 1.8em;
+  color: transparent;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  margin-bottom: 15px;
+}
+
+.book-tracker input[type="text"],
+.book-tracker input[type="datetime-local"] {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.book-tracker ul {
+  list-style: none;
+  padding: 0;
+}
+
+.book-tracker li {
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.book-tracker button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Book tracker button gradient */
+  background-size: 200% 100%;
+  animation: buttonGradientAnimation 6s linear infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.book-tracker button:hover {
+  transform: scale(1.05);
+}
+
+/* Animation for the gradient */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animation for the button gradient */
+@keyframes buttonGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/*Breathing */
+
+.breathing-container {
+    width: 150px;
+    height: 150px;
+    position: relative; /* Set the parent to relative */
+}
+
+.breathing-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #4299e1;
+    position: absolute; /* Keep circle absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 4s ease-in-out;
+}
+
+/* Notes Widget Styles */
+#notesWidget {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+#notesWidget:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#notesWidget h2 {
+  font-size: 1.8em;
+  color: transparent;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  margin-bottom: 15px;
+}
+
+#notesWidget textarea {
+  /* Style the textarea for notes */
+  resize: vertical; /* Allow vertical resizing */
+  min-height: 100px; /* Set a minimum height for the textarea */
+}
+
+#notesWidget button.save-notes-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  background-image: linear-gradient(
+    135deg,
+    #2e3192,
+    #1bffff,
+    #9c27b0
+  ); /* New gradient colors */
+  background-size: 200% 100%; /* Same as other animated buttons */
+  animation: buttonGradientAnimation 6s linear infinite; /* Same animation as other buttons */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#notesWidget button.save-notes-button:hover {
+  transform: scale(1.05);
+}
+
+/* Animation for the gradient */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animation for the button gradient */
+@keyframes buttonGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
