@@ -6,7 +6,7 @@
     <title>Improved Productivity Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-    <link rel="stylesheet" href="dashboard.css"> 
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body class="bg-gray-100">
     <div class="gradient-bg text-white py-6 px-4 shadow-lg">
@@ -119,12 +119,13 @@
                     <p id="weatherDescription" class="text-xl"></p>
                 </div>
             </div>
-
-            <div class="widget p-6 w-full lg:w-auto">
-                <h2 class="text-xl font-semibold mb-4"><i class="far fa-sticky-note mr-2"></i>Quick Notes</h2>
-                <textarea id="quickNotes" rows="5" placeholder="Jot down your thoughts..." class="w-full p-2 mb-2 border rounded"></textarea>
-                <button onclick="saveNotes()" class="w-full bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600 save-notes-button">Save Notes</button>
-            </div>
+	<!-- Book Tracker Widget -->
+<div class="widget p-6 book-tracker"> <h2 class="text-xl font-semibold mb-4"><i class="fas fa-book mr-2"></i>Book Tracker</h2>
+    <input type="text" id="newBookName" placeholder="Book Name" class="w-full p-2 mb-2 border rounded">
+    <input type="datetime-local" id="bookDateTime" class="w-full p-2 mb-2 border rounded">
+    <button onclick="addBook()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Add Book</button>
+    <ul id="bookList" class="mb-4"></ul>
+</div>
 
             <div class="widget p-6"> 
                 <h2 class="text-xl font-semibold mb-4"><i class="fas fa-share-alt mr-2"></i>Social</h2>
@@ -137,6 +138,56 @@
                     <li><a href="https://web.whatsapp.com" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li> 
                 </ul>
             </div> 
+	
+<!-- Mindfulness Breathing Exercise Widget -->
+
+<div class="widget p-6">
+    <h2 class="text-xl font-semibold mb-4"><i class="fas fa-lungs mr-2"></i>Mindfulness Breathing</h2>
+    <div id="breathingExercise" class="text-center">
+        <div class="breathing-container mx-auto mb-4">
+            <div id="breathingCircle" class="breathing-circle"></div>
+        </div>
+        <div id="breathingText" class="text-2xl font-bold mb-4">Breathe In</div>
+        <div id="cycleCounter" class="text-lg mb-4">Cycles: 0</div>
+        <button id="startBreathing" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 mr-2">Start Exercise</button>
+        <button id="resetBreathing" class="bg-red-500 text-white p-2 rounded hover:bg-red-600">Reset</button>
+    </div>
+</div>
+
+            <!-- Calculator Widget -->
+            <div class="widget p-6">
+                <h2 class="text-xl font-semibold mb-4"><i class="fas fa-calculator mr-2"></i>Calculator</h2>
+                <div id="calculator" class="text-center">
+                    <input type="text" id="calcInput" class="w-full p-2 mb-4 border rounded" readonly>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button class="calc-button">7</button>
+                        <button class="calc-button">8</button>
+                        <button class="calc-button">9</button>
+                        <button class="calc-button bg-red-500">/</button>
+                        <button class="calc-button">4</button>
+                        <button class="calc-button">5</button>
+                        <button class="calc-button">6</button>
+                        <button class="calc-button bg-red-500">*</button>
+                        <button class="calc-button">1</button>
+                        <button class="calc-button">2</button>
+                        <button class="calc-button">3</button>
+                        <button class="calc-button bg-red-500">-</button>
+                        <button class="calc-button">0</button>
+                        <button class="calc-button">.</button>
+                        <button class="calc-button bg-green-500">=</button>
+                        <button class="calc-button bg-red-500">+</button>
+                    </div>
+                    <button class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 mt-4 calc-button">Clear</button>
+                </div>
+            </div>
+
+   <!-- Notes Widget -->
+    <div class="widget p-6" id="notesWidget">
+        <h2 class="text-xl font-semibold mb-4"><i class="fas fa-sticky-note mr-2"></i>Notes</h2>
+        <textarea id="quickNotes" placeholder="Take some notes..." class="w-full p-2 mb-2 border rounded"></textarea>
+        <button onclick="saveNotes()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 save-notes-button">Save Notes</button>
+    </div>
+
         </div>
     </div>
     <script src="dashboard.js"></script>
