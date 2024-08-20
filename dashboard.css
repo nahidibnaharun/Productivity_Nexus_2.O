@@ -62,44 +62,45 @@ body {
 
 /*Breathing Circle*/
 .breathing-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #4299e1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 4s ease-in-out;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #4299e1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 4s ease-in-out;
 }
 
 .breathing-circle.inhale {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .breathing-circle.hold {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .breathing-circle.exhale {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 #breathingExercise button {
-    background-image: linear-gradient(135deg, #4299e1, #667eea, #764ba2);
-    background-size: 200% 100%;
-    animation: buttonGradientAnimation 6s linear infinite;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+  background-image: linear-gradient(135deg, #4299e1, #667eea, #764ba2);
+  background-size: 200% 100%;
+  animation: buttonGradientAnimation 6s linear infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 #breathingExercise button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 /* Notes Widget Styles */
-.widget:nth-child(8) { /* Adjust the nth-child selector if your Notes widget is in a different position */
+.widget:nth-child(8) {
+  /* Adjust the nth-child selector if your Notes widget is in a different position */
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -422,7 +423,12 @@ li .delete-button,
   color: white;
   cursor: pointer;
   font-weight: bold;
-  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Book tracker button gradient */
+  background-image: linear-gradient(
+    135deg,
+    #009245,
+    #fcee21,
+    #03f303
+  ); /* Book tracker button gradient */
   background-size: 200% 100%;
   animation: buttonGradientAnimation 6s linear infinite;
   transition: transform 0.3s ease, background-color 0.3s ease;
@@ -457,25 +463,68 @@ li .delete-button,
     background-position: 0% 50%;
   }
 }
-/*Breathing */
+/* ... (other styles) ... */
 
+/* Breathing Circle */
 .breathing-container {
-    width: 150px;
-    height: 150px;
-    position: relative; /* Set the parent to relative */
+  width: 150px;
+  height: 150px;
+  position: relative; /* Set the parent to relative */
 }
 
 .breathing-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #4299e1;
-    position: absolute; /* Keep circle absolute */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
- 
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute; /* Keep circle absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 4s ease-in-out;
+  background-image: linear-gradient(135deg, #0400ff, #8400ff, #ff0000);
+  background-size: 400% 400%;
 }
+
+.breathing-circle.inhale {
+  width: 150px;
+  height: 150px;
+}
+
+.breathing-circle.hold {
+  width: 150px;
+  height: 150px;
+}
+
+.breathing-circle.exhale {
+  width: 100px;
+  height: 100px;
+}
+
+#breathingExercise button {
+  background-image: linear-gradient(135deg, #00ff15, #8400ff, #ff00ff);
+  background-size: 200% 100%;
+  animation: buttonGradientAnimation 6s linear infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#breathingExercise button:hover {
+  transform: scale(1.05);
+}
+
+/* Animation for the breathing circle gradient */
+@keyframes breathingCircleGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ... (other styles) ... */
 
 /* Notes Widget Styles */
 #notesWidget {
@@ -556,3 +605,152 @@ li .delete-button,
     background-position: 0% 50%;
   }
 }
+/* box game*/
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-gap: 10px;
+  width: 300px;
+  margin: 20px auto;
+}
+
+.card {
+  width: 70px;
+  height: 70px;
+  background-color: #ddd;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative; /* For the back face */
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card.matched {
+  background-image: linear-gradient(135deg, #f800e3, #23ff1b, #d900ff);
+  pointer-events: none; /* Disable clicks on matched cards */
+}
+.card-content {
+  font-size: 2em;
+  color: #333;
+  transform: rotateY(180deg); /* Initially hidden */
+  transition: transform 0.2s;
+  position: absolute; /* For the front face */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden; /* Hide the back face when flipped */
+}
+
+.card.flipped .card-content {
+  transform: rotateY(0deg); /* Reveal when flipped */
+}
+
+.score-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.level-select {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.level-select label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.level-select select {
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.level-select button {
+  padding: 8px 15px;
+  background-image: linear-gradient(135deg, #0011ff, #ff1b1b, #d900ff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ... (your existing CSS) ... */
+
+/* --- Competitive Programming Links --- */
+.social-links .codeforces {
+  background-image: linear-gradient(
+    135deg,
+    #fbff00,
+    #0011ff,
+    #ff0000
+  ); /* Blue-ish theme */
+}
+
+.social-links .atcoder {
+  background-image: linear-gradient(
+    135deg,
+    #000000,
+    #99878d,
+    #ffffff
+  ); /* Pinkish theme */
+}
+
+.social-links .leetcode {
+  background-image: linear-gradient(
+    135deg,
+    #000000,
+    #754eb3,
+    #929292
+  ); /* Blue theme */
+}
+
+.social-links .projecteuler {
+  background-image: linear-gradient(
+    135deg,
+    #ff8800,
+    #5e5e5e,
+    #000000
+  ); /* Dark gray theme */
+}
+
+.social-links .codechef {
+  background-image: linear-gradient(
+    135deg,
+    #ffffff,
+    #964b00,
+    #000000
+  ); /* Orange-brown theme */
+}
+
+.social-links .hackerrank {
+  background-image: linear-gradient(
+    135deg,
+    #00ff22,
+    #f3f3f3,
+    #000000
+  ); /* Red-orange theme */
+}
+
+.social-links .topcoder {
+  background-image: linear-gradient(
+    135deg,
+    #0370ff,
+    #01ff01,
+    #ffef13,
+    #ff0000
+  ); /* Green theme */
+}
+
+/* ... (your existing CSS) ... */

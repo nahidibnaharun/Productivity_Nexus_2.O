@@ -51,14 +51,14 @@ function addReminder() {
     if (reminderInput.value.trim() !== '' && reminderTimeInput.value.trim() !== '') {
         const reminderText = `${reminderInput.value} - ${new Date(reminderTimeInput.value).toLocaleString()}`;
         const li = document.createElement('li');
-        li.innerHTML = 
+        li.innerHTML =
             `<div class="flex items-center justify-between py-2">
                 <div>
                     <input type="checkbox" onchange="updateProductivityScore()" class="mr-2">
                     <span>${reminderText}</span>
                 </div>
                 <button onclick="this.closest('li').remove(); updateProductivityScore()" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i> 
+                    <i class="fas fa-trash"></i>
                 </button>
             </div>`;
         reminderList.appendChild(li);
@@ -78,17 +78,17 @@ function addTask() {
     if (taskInput.value.trim() !== '') {
         const taskText = taskInput.value;
         const taskType = taskTypeSelect.value;
-        const taskImportance = taskImportanceSelect.value; 
+        const taskImportance = taskImportanceSelect.value;
 
         const li = document.createElement('li');
-        li.innerHTML = 
+        li.innerHTML =
             `<div class="flex items-center justify-between py-2">
                 <div>
-                    <input type="checkbox" onchange="updateProductivityScore()" class="mr-2" data-importance="${taskImportance}"> 
-                    <span>${taskText} (${taskType}) - Importance: ${taskImportance}</span> 
+                    <input type="checkbox" onchange="updateProductivityScore()" class="mr-2" data-importance="${taskImportance}">
+                    <span>${taskText} (${taskType}) - Importance: ${taskImportance}</span>
                 </div>
                 <button onclick="this.closest('li').remove(); updateProductivityScore()" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i> 
+                    <i class="fas fa-trash"></i>
                 </button>
             </div>`;
         taskList.appendChild(li);
@@ -114,7 +114,7 @@ function updateWaterIntake() {
 
 // Focus Timer
 let focusTimer;
-let focusTimeRemaining = 1500; 
+let focusTimeRemaining = 1500;
 function startFocusTimer() {
     clearInterval(focusTimer);
     focusTimer = setInterval(() => {
@@ -137,11 +137,9 @@ function updateFocusTimer() {
     document.getElementById('focusTimer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-
-
 // Logout
 function logout() {
-    window.location.href = "index.html"; 
+    window.location.href = "index.html";
 }
 
 // Productivity Score (Corrected)
@@ -151,13 +149,13 @@ function updateProductivityScore() {
     let completedTasks = 0;
 
     tasks.forEach(task => {
-        const importance = parseInt(task.dataset.importance); 
-        totalScore += importance; 
+        const importance = parseInt(task.dataset.importance);
+        totalScore += importance;
 
         // Check if the task is checked *before* adding to completedTasks
         if (task.checked) {
             completedTasks += importance;
-        } 
+        }
     });
 
     const reminders = document.querySelectorAll('#reminderList input[type="checkbox"]'); // Select all reminder checkboxes
@@ -166,7 +164,7 @@ function updateProductivityScore() {
 
         // Check if the reminder is checked *before* adding to completedTasks
         if (reminder.checked) {
-            completedTasks += 1; 
+            completedTasks += 1;
         }
     });
 
@@ -185,7 +183,7 @@ window.onload = function() {
     updateClockAndDate();
     updateProductivityScore();
     const savedNotes = localStorage.getItem('quickNotes');
-   
+
     // Initialize Weather
     fetchWeather();
 
@@ -206,11 +204,11 @@ window.onload = function() {
 // Timer updates
 function updateTimer() {
     const timerMinutes = document.getElementById('timerMinutes').value;
-    focusTimeRemaining = timerMinutes * 60; 
+    focusTimeRemaining = timerMinutes * 60;
     updateFocusTimer();
 }
 
-// Upcoming Events 
+// Upcoming Events
 function addEvent() {
     const eventInput = document.getElementById('newEvent');
     const eventDateInput = document.getElementById('eventDate');
@@ -352,14 +350,137 @@ function resetBreathingExercise() {
     cycles = 0;
     document.getElementById('cycleCounter').textContent = 'Cycles: 0';
 }
+// games 
+ const gameContainer = document.getElementById('gameContainer');
+    const scoreElement = document.getElementById('score');
+    const movesElement = document.getElementById('moves');
+    const levelSelect = document.getElementById('level');
+    const startButton = document.getElementById('startButton');
+
+    let score = 0;
+    let moves = 0;
+    let flippedCards = [];
+    let matchedCards = [];
+    let gameBoard = [];
+    let numCards; 
+
+    const symbols = ['🍎', '🍌', '🍇', '🍓', '🍉', '🍍', '🍒', '🍑', '🍊', '🍋', '🥭', '🥥', '🥝', '🥑', '🍆', '🥕']; 
+
+    // Function to start the game based on selected level
+    startButton.addEventListener('click', () => {
+        const selectedLevel = levelSelect.value;
+        switch (selectedLevel) {
+            case 'easy':
+                numCards = 8;
+                break;
+            case 'medium':
+                numCards = 10;
+                break;
+            case 'hard':
+                numCards = 12;
+                break;
+        }
+        startGame(); 
+    });
+
+    // Function to create a card element
+    function createCard(symbol) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <div class="card-content">${symbol}</div>
+        `;
+        card.addEventListener('click', flipCard);
+        return card;
+    }
+
+    // Function to shuffle the array (Fisher-Yates Shuffle)
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // Function to start the game
+    function startGame() {
+        score = 0;
+        moves = 0;
+        flippedCards = [];
+        matchedCards = [];
+        scoreElement.textContent = score;
+        movesElement.textContent = moves;
+
+        gameBoard = shuffle(symbols.slice(0, numCards)).concat(shuffle(symbols.slice(0, numCards))); // Create pairs
+        gameContainer.innerHTML = ''; // Clear previous game
+
+        // Create and add cards to the game board
+        gameBoard.forEach(symbol => {
+            const card = createCard(symbol);
+            gameContainer.appendChild(card);
+        });
+    }
+
+    // Function to flip a card
+    function flipCard() {
+        if (flippedCards.length < 2 && !matchedCards.includes(this) && !flippedCards.includes(this)) {
+            this.classList.add('flipped');
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                movesElement.textContent = moves;
+
+                // Check if the cards match
+                const card1 = flippedCards[0].querySelector('.card-content').textContent;
+                const card2 = flippedCards[1].querySelector('.card-content').textContent;
+
+                if (card1 === card2) {
+                    setTimeout(() => {
+                        flippedCards[0].classList.add('matched');
+                        flippedCards[1].classList.add('matched');
+                        matchedCards.push(...flippedCards);
+                        flippedCards = [];
+
+                        score += 10;
+                        scoreElement.textContent = score;
+
+                        // Check if the game is over
+                        if (matchedCards.length === gameBoard.length) {
+                            setTimeout(() => {
+                                alert(`Congratulations! You won with ${moves} moves!`);
+                                startGame(); // Start a new game
+                            }, 500);
+                        }
+                    }, 1000); // Wait for 1 second before checking for match
+                } else {
+                    setTimeout(() => {
+                        flippedCards[0].classList.remove('flipped');
+                        flippedCards[1].classList.remove('flipped');
+                        flippedCards = [];
+                    }, 1000); // Wait for 1 second before flipping back
+                }
+            }
+        }
+    }
+
+    // Initially hide the game board 
+    gameContainer.style.display = "none"; // Hide the board at the start
+
+    // Start the game when the "Start Game" button is clicked
+    startButton.addEventListener('click', () => {
+        gameContainer.style.display = "grid"; // Show the game board
+        startGame();
+    });
+
+
 // Notes
 function saveNotes() {
     const notes = document.getElementById('quickNotes').value;
     localStorage.setItem('quickNotes', notes);
 }
 
-
 // Add these to your window.onload function
 document.getElementById('startBreathing').addEventListener('click', startBreathingExercise);
 document.getElementById('resetBreathing').addEventListener('click', resetBreathingExercise);
-
