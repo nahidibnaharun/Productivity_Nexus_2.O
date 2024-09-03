@@ -200,3 +200,30 @@ button {
     animation: gradientAnimation 15s ease infinite; 
     margin-bottom: 30px;
 }
+/* ... other styles for index.html ... */
+.tab-icon {
+    width: 30px; 
+    height: 30px;
+    background-image: url('file:///D:/download/nahid/project_prime/monday-icon-svgrepo-com.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: inline-block;
+    margin-right: 8px;
+    animation: iconAnimation 2s linear infinite;
+}
+
+@keyframes iconAnimation {
+    0% {
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        transform: scale(1.1);
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        transform: scale(1);
+        filter: hue-rotate(360deg);
+    }
+}

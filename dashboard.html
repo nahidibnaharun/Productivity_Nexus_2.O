@@ -6,6 +6,7 @@
     <title>Improved Productivity Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="icon" type="image/svg+xml" href="file:///D:/download/nahid/project_prime/monday-icon-svgrepo-com.svg">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body class="bg-gray-100">
@@ -147,6 +148,7 @@
                     <li><a href="https://web.telegram.org" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i> Telegram</a></li>
                     <li><a href="https://www.x.com" target="_blank" class="twitter"><i class="fab fa-twitter"></i> X (Twitter)</a></li>
                     <li><a href="https://www.notion.so" target="_blank" class="notion"><i class="fas fa-book"></i> Notion</a></li>
+                    <li><a href="https://discord.com/app" target="_blank" class="discord"><i class="fas fa-book"></i> Discord</a></li>
                     <li><a href="https://web.whatsapp.com" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                 </ul>
             </div>
@@ -163,6 +165,22 @@
                     <li><a href="https://www.topcoder.com/" target="_blank" class="topcoder"><i class="fas fa-code"></i> TopCoder</a></li>
                 </ul>
             </div>
+<!-- AI Widget -->
+<div class="widget p-6">
+    <h2 class="text-xl font-semibold mb-4"><i class="fas fa-robot mr-2"></i>AI Assistant</h2>
+    <div class="flex items-center mb-2">
+        <select id="aiPlatformSelect" class="w-full p-2 mb-2 border rounded" onchange="updateAIIcon()">
+            <option value="gemini">Gemini</option>
+            <option value="aistudio">AI Studio</option>
+            <option value="openai">ChatGPT</option>
+            <option value="perplexity">Perplexity</option>
+            <option value="claude">Claude</option>
+        </select>
+        <span id="aiIcon" class="ml-2"><i class="fas fa-question-circle"></i></span> </div>
+    <textarea id="aiPrompt" placeholder="Enter your prompt here..." class="w-full p-2 mb-2 border rounded"></textarea>
+    <button id="submitPrompt" class="w-full p-2 rounded hover:scale-105 animated-button mb-2">Submit</button>
+</div>
+
             <!-- Mindfulness Breathing Exercise Widget -->
             <div class="widget p-6">
                 <h2 class="text-xl font-semibold mb-4"><i class="fas fa-lungs mr-2"></i>Mindfulness Breathing</h2>
@@ -228,6 +246,21 @@
         <p>Moves: <span id="moves">0</span></p>
     </div>
 </div>
+
+<!-- Sudoku Widget -->
+<div id="sudoku-widget" class="widget p-6">
+  <h2 class="text-xl font-semibold mb-4">Sudoku Game</h2>
+  <div id="high-score" class="text-center text-2xl font-bold mb-2">High Score: 0</div>
+  <div id="lives" class="text-center text-2xl font-bold mb-4">Lives: 3</div>
+  <div id="sudoku-board" class="grid grid-cols-9 gap-1 mx-auto"></div>
+  <div class="flex justify-between flex-wrap mt-4">
+    <button id="new-game" class="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white p-2 rounded hover:scale-105 animated-button mb-2">New Game</button>
+    <button id="solve" class="w-full bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white p-2 rounded hover:scale-105 animated-button mb-2">Solution</button>
+    <button id="hint" class="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white p-2 rounded hover:scale-105 animated-button mb-2">Hint</button>
+    <button id="check-solved" class="w-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white p-2 rounded hover:scale-105 animated-button mb-2">Check Solved</button>
+  </div>
+</div>
+
 
         </div>
     </div>

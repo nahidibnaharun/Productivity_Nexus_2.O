@@ -474,13 +474,279 @@ function resetBreathingExercise() {
         startGame();
     });
 
+// Sudoku grid
+// Sudoku Code with Lives, High Score Saving, and Improved Styling
+const board = document.getElementById('sudoku-board');
+const newGameBtn = document.getElementById('new-game');
+const solveBtn = document.getElementById('solve');
+const hintBtn = document.getElementById('hint');
+const checkSolvedBtn = document.getElementById('check-solved');
+const highScoreElement = document.getElementById('high-score');
+const livesElement = document.getElementById('lives');
+let selectedCell = null;
+let puzzle = [];
+let solution = [];
+let highScore = localStorage.getItem('highScore') || 0;
+let lives = 3;
+let hintsUsed = 0;
 
-// Notes
-function saveNotes() {
-    const notes = document.getElementById('quickNotes').value;
-    localStorage.setItem('quickNotes', notes);
+function generatePuzzle() {
+  const base = [
+    [5,3,4,6,7,8,9,1,2],
+    [6,7,2,1,9,5,3,4,8],
+    [1,9,8,3,4,2,5,6,7],
+    [8,5,9,7,6,1,4,2,3],
+    [4,2,6,8,5,3,7,9,1],
+    [7,1,3,9,2,4,8,5,6],
+    [9,6,1,5,3,7,2,8,4],
+    [2,8,7,4,1,9,6,3,5],
+    [3,4,5,2,8,6,1,7,9]
+  ];
+
+  for (let i = 0; i < 9; i += 3) {
+    const rows = [i, i + 1, i + 2];
+    for (let j = 0; j < 2; j++) {
+      const r1 = Math.floor(Math.random() * 3);
+      const r2 = Math.floor(Math.random() * 3);
+      [base[rows[r1]], base[rows[r2]]] = [base[rows[r2]], base[rows[r1]]];
+    }
+  }
+
+  solution = base;
+  puzzle = JSON.parse(JSON.stringify(base));
+
+  for (let i = 0; i < 40; i++) {
+    const row = Math.floor(Math.random() * 9);
+    const col = Math.floor(Math.random() * 9);
+    puzzle[row][col] = 0;
+  }
 }
+
+function renderBoard() {
+  board.innerHTML = '';
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.dataset.row = i;
+      cell.dataset.col = j;
+      if (puzzle[i][j] !== 0) {
+        cell.textContent = puzzle[i][j];
+        cell.classList.add('initial');
+      }
+      cell.addEventListener('click', selectCell);
+      board.appendChild(cell);
+    }
+  }
+}
+
+function selectCell(event) {
+  if (selectedCell) {
+    selectedCell.classList.remove('selected');
+  }
+  selectedCell = event.target;
+  selectedCell.classList.add('selected');
+}
+
+function handleKeyPress(event) {
+  if (selectedCell && !selectedCell.classList.contains('initial')) {
+    const key = event.key;
+    if (key >= '1' && key <= '9') {
+      const row = parseInt(selectedCell.dataset.row);
+      const col = parseInt(selectedCell.dataset.col);
+      if (puzzle[row][col] === solution[row][col]) return;
+      puzzle[row][col] = parseInt(key);
+      selectedCell.textContent = key;
+      selectedCell.classList.remove('error');
+      if (puzzle[row][col] !== solution[row][col]) {
+        selectedCell.classList.add('error');
+        reduceLife();
+      } else {
+        checkWin();
+      }
+    } else if (key === 'Backspace' || key === 'Delete') {
+      const row = parseInt(selectedCell.dataset.row);
+      const col = parseInt(selectedCell.dataset.col);
+      puzzle[row][col] = 0;
+      selectedCell.textContent = '';
+      selectedCell.classList.remove('error');
+    }
+  }
+}
+
+function newGame() {
+  lives = 3;
+  hintsUsed = 0;
+  updateLives();
+  generatePuzzle();
+  renderBoard();
+}
+
+function solve() {
+  puzzle = JSON.parse(JSON.stringify(solution));
+  renderBoard();
+  resetScore();
+}
+
+function hint() {
+  if (hintsUsed >= 3) return;
+  hintsUsed++;
+  let emptyCells = [];
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (puzzle[i][j] === 0) {
+        emptyCells.push({ row: i, col: j });
+      }
+    }
+  }
+  if (emptyCells.length > 0) {
+    const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    puzzle[randomCell.row][randomCell.col] = solution[randomCell.row][randomCell.col];
+    renderBoard();
+  }
+  updateHighScore(-5); // Deduct 5 points for each hint
+}
+
+function checkSolved() {
+  let solved = true;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (puzzle[i][j] !== solution[i][j]) {
+        solved = false;
+        break;
+      }
+    }
+    if (!solved) break;
+  }
+  if (solved) {
+    alert('Congratulations! You solved the puzzle!');
+    updateHighScore();
+    winAnimation();
+  } else {
+    alert('Puzzle is not solved correctly yet.');
+  }
+}
+
+function reduceLife() {
+  lives--;
+  updateLives();
+  if (lives === 0) {
+    alert('Game Over! You ran out of lives.');
+    resetScore();
+    solve(); // Show the solution
+  }
+}
+
+function updateLives() {
+  livesElement.textContent = `Lives: ${lives}`;
+}
+
+function updateHighScore(change = 10) {
+  highScore += change;
+  highScoreElement.textContent = `High Score: ${highScore}`;
+  localStorage.setItem('highScore', highScore);
+}
+
+function resetScore() {
+  highScore = 0;
+  highScoreElement.textContent = `High Score: 0`;
+  localStorage.setItem('highScore', highScore);
+}
+
+function checkWin() {
+  let currentScore = calculateScore();
+  if (currentScore > highScore) {
+    highScore = currentScore;
+    highScoreElement.textContent = `High Score: ${highScore}`;
+    localStorage.setItem('highScore', highScore);
+  }
+}
+
+function calculateScore() {
+  let score = 0;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (puzzle[i][j] === solution[i][j]) {
+        score++;
+      }
+    }
+  }
+  return score;
+}
+
+newGameBtn.addEventListener('click', newGame);
+solveBtn.addEventListener('click', solve);
+hintBtn.addEventListener('click', hint);
+checkSolvedBtn.addEventListener('click', checkSolved);
+document.addEventListener('keydown', handleKeyPress);
+
+// Initialize the game and load the saved high score
+newGame();
+highScoreElement.textContent = `High Score: ${highScore}`;
 
 // Add these to your window.onload function
 document.getElementById('startBreathing').addEventListener('click', startBreathingExercise);
 document.getElementById('resetBreathing').addEventListener('click', resetBreathingExercise);
+
+// AI Widget
+const aiPlatformSelect = document.getElementById('aiPlatformSelect');
+const aiPrompt = document.getElementById('aiPrompt');
+const submitPrompt = document.getElementById('submitPrompt');
+const aiIcon = document.getElementById('aiIcon');
+
+// Function to update the AI icon based on the selected platform
+function updateAIIcon() {
+    const selectedPlatform = aiPlatformSelect.value;
+
+    switch (selectedPlatform) {
+        case 'gemini':
+            aiIcon.innerHTML = '<img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini">';
+            submitPrompt.style.backgroundImage = 'linear-gradient(135deg, #f700ff, #3700fd, #ff0000)';
+            break;
+        case 'aistudio':
+            aiIcon.innerHTML = '<img src="https://www.gstatic.com/aistudio/ai_studio_favicon_32x32.svg" alt="AI Studio">';
+            submitPrompt.style.backgroundImage = 'linear-gradient(135deg, #1eff00, #00e1ff, #001aff)';
+            break;
+        case 'openai':
+            aiIcon.innerHTML = '<img src="https://cdn.oaistatic.com/_next/static/media/favicon-32x32.630a2b99.png" alt="OpenAI">';
+            submitPrompt.style.backgroundImage = 'linear-gradient(135deg, #000000, #9c9494, #000000)';
+            break;
+        case 'perplexity':
+            aiIcon.innerHTML = '<i class="fas fa-question-circle"></i>';
+            aiIcon.innerHTML = '<img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/perplexity-ai-icon.png" alt="Perplexity">';
+            // Style the image
+            aiIcon.querySelector('img').style.width = '24px'; 
+            aiIcon.querySelector('img').style.height = '24px';
+            break;
+        case 'claude':
+            aiIcon.innerHTML = '<img src="https://claude.ai/images/claude_app_icon.png" alt="Claude">';
+            submitPrompt.style.backgroundImage = 'linear-gradient(135deg, #ff9900, #fdcf00, #ff0000)';
+             // Style the image
+             aiIcon.querySelector('img').style.width = '24px'; 
+             aiIcon.querySelector('img').style.height = '24px';
+            break;
+        default:
+            aiIcon.innerHTML = '<img src="https://www.gstatic.com/aistudio/ai_studio_favicon_32x32.svg" alt="AI">'; 
+            submitPrompt.style.backgroundImage = 'linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b)';
+    }
+}
+
+// Call the function to set the initial icon
+updateAIIcon();
+
+// Event listener for the select element
+aiPlatformSelect.addEventListener('change', updateAIIcon);
+
+submitPrompt.addEventListener('click', () => {
+    const selectedPlatform = aiPlatformSelect.value;
+    const prompt = aiPrompt.value;
+
+    let url = '';
+
+    switch (selectedPlatform) {
+        // ... (Your existing URL logic) ...
+    }
+
+    window.open(url, '_blank');
+    aiPrompt.value = '';
+});

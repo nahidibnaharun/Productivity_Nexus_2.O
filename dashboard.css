@@ -259,6 +259,9 @@ li button:hover,
 .social-links .whatsapp {
   background-image: linear-gradient(135deg, #00ff0d, #13733b, #00ff4c);
 }
+.social-links .discord {
+  background-image: linear-gradient(135deg, #2600ff, #ff009d, #ff00bf);
+}
 
 /* --- Logout Button --- */
 .logout-button {
@@ -752,5 +755,183 @@ li .delete-button,
     #ff0000
   ); /* Green theme */
 }
+/* Sudoku Styles */
+#sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 2px;
+  max-width: 360px;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid #333; /* Overall border */
+}
 
-/* ... (your existing CSS) ... */
+#sudoku-board .cell {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border: 1px solid #999;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#sudoku-board .cell.selected {
+  background-color: #d1e7dd;
+}
+
+#sudoku-board .cell.initial {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+#sudoku-board .cell.error {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+#sudoku-board .cell:nth-child(3n+1):not(:first-child):not(:nth-child(10n+1)) {
+  border-left: 2px solid #333;
+}
+
+#sudoku-board .cell:nth-child(n+19):nth-child(-n+21),
+#sudoku-board .cell:nth-child(n+37):nth-child(-n+39),
+#sudoku-board .cell:nth-child(n+55):nth-child(-n+57) {
+  border-bottom: 2px solid #333;
+}
+
+/* High Score and Lives Stylish */
+#high-score, #lives {
+  color: #ff5722;
+  font-size: 1.8em;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #ffe259, #ffa751);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientBackgroundAnimation 3s ease-in-out infinite;
+}
+
+@keyframes gradientBackgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Button Styles with Gradient Animations */
+#new-game, 
+#solve, 
+#hint, 
+#check-solved {
+  background-size: 200% 100%;
+  animation: buttonGradientAnimation 4s linear infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  padding: 12px 24px; /* Slightly larger padding */
+  border: none;
+  border-radius: 8px; /* Slightly more rounded corners */
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+@keyframes buttonGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Specific Gradients for Sudoku Buttons */
+#new-game {
+  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Green */
+}
+
+#solve {
+  background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607); /* Orange */
+}
+
+#hint {
+  background-image: linear-gradient(135deg, #f86464, #ff1414, #0073ff); /* Red */
+}
+
+#check-solved {
+  background-image: linear-gradient(135deg, #5900ff, #05ffd5, #b13ddf); /* Blue */
+}
+
+#new-game:hover, 
+#solve:hover, 
+#hint:hover, 
+#check-solved:hover {
+  transform: scale(1.05);
+}
+
+/* Winning animation */
+@keyframes winAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.sudoku-win {
+  animation: winAnimation 0.5s infinite alternate;
+}
+
+
+
+
+/* ... other styles for index.html ... */
+.tab-icon {
+  width: 30px; 
+  height: 30px;
+  background-image: url('file:///D:/download/nahid/project_prime/monday-icon-svgrepo-com.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: inline-block;
+  margin-right: 8px;
+  animation: iconAnimation 2s linear infinite;
+}
+
+@keyframes iconAnimation {
+  0% {
+      transform: scale(1);
+      filter: hue-rotate(0deg);
+  }
+  50% {
+      transform: scale(1.1);
+      filter: hue-rotate(180deg);
+  }
+  100% {
+      transform: scale(1);
+      filter: hue-rotate(360deg);
+  }
+}
+
+
+
+
+
