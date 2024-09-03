@@ -11,21 +11,50 @@ function updateClockAndDate() {
 }
 setInterval(updateClockAndDate, 1000);
 
+
 // Fetch Weather Data
 function fetchWeather() {
-    const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; // Your API key
-    const city = document.getElementById('citySelect').value; // Get selected city
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; // Your API key
+  const city = document.getElementById('citySelect').value; // Get selected city
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('weatherLocation').textContent = `${data.name}, ${data.sys.country}`;
-            document.getElementById('weatherTemp').textContent = `${Math.round(data.main.temp)}°C`;
-            document.getElementById('weatherDescription').textContent = data.weather[0].description;
-        })
-        .catch(error => console.error('Error fetching weather data:', error));
+  fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+          document.getElementById('weatherLocation').textContent = `${data.name}, ${data.sys.country}`;
+          document.getElementById('weatherTemp').textContent = `${Math.round(data.main.temp)}°C`;
+          document.getElementById('weatherDescription').textContent = data.weather[0].description;
+      })
+      .catch(error => console.error('Error fetching weather data:', error));
 }
+
+// Initialize
+window.onload = function() {
+  updateClockAndDate();
+  updateProductivityScore();
+  const savedNotes = localStorage.getItem('quickNotes');
+
+  // Add event listener to citySelect
+  document.getElementById('citySelect').addEventListener('change', fetchWeather);
+
+  // Fetch weather for the default city when the page loads
+  fetchWeather(); 
+
+  document.getElementById('newTask').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+          addTask();
+      }
+  });
+  document.getElementById('newReminder').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+          addReminder();
+      }
+  });
+
+  initCalculator(); // Initialize the calculator widget
+};
+
+
 
 // Motivational Quotes
 const quotes = [
@@ -200,6 +229,7 @@ window.onload = function() {
 
     initCalculator(); // Initialize the calculator widget
 };
+
 
 // Timer updates
 function updateTimer() {
@@ -766,3 +796,255 @@ submitPrompt.addEventListener('click', () => {
     window.open(url, '_blank');
     aiPrompt.value = '';
 });
+
+
+//typing test 
+// Typing Test Widget
+let testParagraph = document.getElementById('testParagraph');
+let userInput = document.getElementById('userInput');
+let timeLeftElement = document.getElementById('timeLeft');
+let timeTakenElement = document.getElementById('timeTaken');
+let wpmElement = document.getElementById('wpm');
+let accuracyElement = document.getElementById('accuracy');
+let typingTestWidget = document.getElementById('typingTestWidget'); 
+
+let startTime;
+let endTime;
+let testTime = 60; // Default test time in seconds
+let intervalId;
+
+function setTestTime() {
+  testTime = parseInt(document.getElementById('testTime').value);
+  updateTestParagraph(testTime); // Update the paragraph based on time
+}
+
+function startTest() {
+  testParagraph = document.getElementById('testParagraph').textContent;
+  userInput.disabled = false;
+  userInput.value = '';
+  userInput.focus();
+  document.getElementById('result').style.display = 'none';
+  startTime = new Date();
+  timeLeftElement.textContent = formatTime(testTime);
+  intervalId = setInterval(updateTimer, 1000);
+  // Removed animation code
+}
+
+function stopTest() {
+  clearInterval(intervalId);
+  endTime = new Date();
+  calculateResult();
+  // Removed animation code
+}
+
+function updateTimer() {
+  testTime--;
+  timeLeftElement.textContent = formatTime(testTime);
+  if (testTime <= 0) {
+    stopTest();
+  }
+}
+
+function calculateResult() {
+  const timeTaken = (endTime.getTime() - startTime.getTime()) / 1000;
+  const userInput = document.getElementById('userInput').value;
+
+  const words = testParagraph.split(' ');
+  const correctWords = calculateCorrectWords(userInput, words);
+  const accuracy = (correctWords / words.length) * 100;
+  const wpm = Math.round((correctWords / timeTaken) * 60);
+
+  timeTakenElement.textContent = timeTaken.toFixed(2);
+  wpmElement.textContent = wpm;
+  accuracyElement.textContent = accuracy.toFixed(2);
+
+  document.getElementById('result').style.display = 'block';
+  userInput.disabled = true;
+}
+
+function calculateCorrectWords(userInput, words) {
+  let correctWords = 0;
+  const userWords = userInput.split(' ');
+  for (let i = 0; i < words.length && i < userWords.length; i++) {
+    if (words[i] === userWords[i]) {
+      correctWords++;
+    }
+  }
+  return correctWords;
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+function updateTestParagraph(testTime) {
+  // Logic to create a paragraph with a variable number of words
+  const baseParagraph = "The quick brown fox jumps over the lazy dog."; // Your base paragraph
+  const wordsToAdd = Math.floor((testTime - 60) / 10); // Add words based on time increase
+  const newParagraph = baseParagraph.split(' ').concat(Array(wordsToAdd).fill('words')).join(' '); 
+  document.getElementById('testParagraph').textContent = newParagraph;
+}
+
+// Event Listeners
+document.getElementById('userInput').addEventListener('keyup', function(event) {
+  if (event.key === 'Enter') {
+    stopTest(); // Stop the test on Enter key press
+  }
+});
+
+// Update test paragraph when selected
+document.getElementById('testParagraphSelect').addEventListener('change', function() {
+  document.getElementById('testParagraph').textContent = this.value;
+  updateTestParagraph(testTime); // Update paragraph based on current time
+});
+
+// ... (your other JavaScript functions) ...
+
+// Fetch 5-Day Forecast Data
+function fetchFiveDayForecast() {
+  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; // Replace with your OpenWeatherMap API key
+  const city = document.getElementById('citySelectAirForecast').value; 
+  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+
+  fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+          const forecastList = document.getElementById('forecastList');
+          forecastList.innerHTML = ''; // Clear previous forecast
+
+          // Group forecasts by day
+          for (let i = 0; i < data.list.length; i += 8) { 
+              const forecast = data.list[i];
+              const day = new Date(forecast.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' });
+              const temp = Math.round(forecast.main.temp);
+              const icon = `http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`; 
+
+              const forecastItem = document.createElement('li');
+              forecastItem.classList.add('forecast-item');
+              forecastItem.innerHTML = `
+                  <div class="day">${day}</div>
+                  <img src="${icon}" alt="${forecast.weather[0].description}" class="forecast-icon">
+                  <div class="temp">${temp}°C</div>
+              `;
+              forecastList.appendChild(forecastItem);
+          }
+      })
+      .catch(error => console.error('Error fetching weather data:', error));
+}
+
+// Initialize the 5-Day forecast
+window.onload = function() {
+  // ... your other initialization code ...
+
+  // Initialize the 5-day forecast widget
+  fetchFiveDayForecast();
+  document.getElementById('citySelectAirForecast').addEventListener('change', fetchFiveDayForecast);
+};
+
+
+// ... (your other JavaScript functions) ...
+// ... (your other JavaScript code) ...
+
+// Fetch Air Pollution Data
+function fetchAirPollutionData() {
+  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; // Replace with your OpenWeatherMap API key
+  const city = document.getElementById('citySelectAirQuality').value; 
+
+  // Get latitude and longitude using Geocoding API
+  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
+      .then(response => response.json())
+      .then(data => {
+          if (data.length > 0) {
+              const lat = data[0].lat;
+              const lon = data[0].lon;
+
+              // Now fetch air pollution data using lat and lon
+              fetchAirPollutionDataByCoords(lat, lon); 
+          } else {
+              // Handle case where city is not found
+              document.getElementById('aqiIndex').textContent = "City not found";
+              document.getElementById('airQualityDescription').textContent = "";
+              document.getElementById('pollutantList').innerHTML = ''; 
+          }
+      })
+      .catch(error => console.error('Error fetching geocoding data:', error));
+}
+
+// Fetch Air Pollution Data by Coordinates
+function fetchAirPollutionDataByCoords(lat, lon) {
+  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; 
+  const apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+  fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+          const airQualityData = document.getElementById('airQualityData');
+          const aqiIndex = document.getElementById('aqiIndex');
+          const airQualityDescription = document.getElementById('airQualityDescription');
+          const pollutantList = document.getElementById('pollutantList');
+
+          if (data.list && data.list.length > 0) {
+              const aqi = data.list[0].main.aqi;
+              aqiIndex.textContent = `AQI: ${aqi}`;
+
+              // Air quality descriptions (you can customize these)
+              let airQualityDescriptionText = "";
+              switch (aqi) {
+                  case 1:
+                      airQualityDescriptionText = "Good - Air quality is considered satisfactory, and air pollution poses little or no risk.";
+                      break;
+                  case 2:
+                      airQualityDescriptionText = "Fair - Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.";
+                      break;
+                  case 3:
+                      airQualityDescriptionText = "Moderate - Members of sensitive groups may experience health effects. The general public is not likely to be affected.";
+                      break;
+                  case 4:
+                      airQualityDescriptionText = "Poor -  Increased likelihood of health effects.  The general public may begin to experience health effects; members of sensitive groups may experience more serious health effects.";
+                      break;
+                  case 5:
+                      airQualityDescriptionText = "Very Poor -  Health warnings of emergency conditions.  Everyone may experience more serious health effects.";
+                      break;
+                  default:
+                      airQualityDescriptionText = "Data Unavailable";
+              }
+              airQualityDescription.textContent = airQualityDescriptionText;
+
+              // Display pollutants
+              pollutantList.innerHTML = ''; 
+              for (const pollutant in data.list[0].components) {
+                  const pollutantItem = document.createElement('li');
+                  pollutantItem.classList.add('pollutant-item');
+                  pollutantItem.innerHTML = `
+                      <div class="pollutant-name">${pollutant.toUpperCase()}</div>
+                      <div class="pollutant-value">${data.list[0].components[pollutant].toFixed(2)} μg/m³</div>
+                  `;
+                  pollutantList.appendChild(pollutantItem);
+              }
+          } else {
+              // Handle the case where data is not available
+              aqiIndex.textContent = "Data Unavailable";
+              airQualityDescription.textContent = "";
+              pollutantList.innerHTML = ''; 
+          }
+      })
+      .catch(error => console.error('Error fetching air pollution data:', error));
+}
+
+// Initialize the Air Pollution Widget
+window.onload = function() {
+  // ... your other initialization code ...
+
+  // Initialize the 5-day forecast widget
+  fetchFiveDayForecast();
+  document.getElementById('citySelectAirForecast').addEventListener('change', fetchFiveDayForecast);
+
+  // Initialize the Air Pollution Widget
+  fetchAirPollutionData();
+  document.getElementById('citySelectAirQuality').addEventListener('change', fetchAirPollutionData);
+};
+
+
+// ... (your other JavaScript functions) ...
