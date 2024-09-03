@@ -744,8 +744,24 @@ submitPrompt.addEventListener('click', () => {
     let url = '';
 
     switch (selectedPlatform) {
-        // ... (Your existing URL logic) ...
-    }
+        case 'gemini':
+            url = 'https://gemini.google.com/app/' + encodeURIComponent(prompt); 
+            break;
+        case 'aistudio':
+            url = 'https://aistudio.google.com/app/prompts/new_chat/' + encodeURIComponent(prompt); 
+            break;
+        case 'openai':
+            url = 'https://chat.openai.com/chat?q=' + encodeURIComponent(prompt); 
+            break;
+        case 'perplexity':
+            url = 'https://www.perplexity.ai/search?q=' + encodeURIComponent(prompt); 
+            break;
+        case 'claude':
+            url = 'https://claude.ai/search?q=' + encodeURIComponent(prompt); 
+            break;
+        default: 
+            url = 'https://www.google.com/search?q=' + encodeURIComponent(prompt); // Default to Google Search
+   }
 
     window.open(url, '_blank');
     aiPrompt.value = '';
