@@ -30,7 +30,7 @@
                 <div id="date" class="text-center text-gray-600"></div>
             </div>
 
-            <!-- Tasks Widget -->
+            <!-- Tasks Widget (Updated) -->
             <div class="widget p-6">
                 <h2 class="text-xl font-semibold mb-4"><i class="fas fa-tasks mr-2"></i>Tasks</h2>
                 <ul id="taskList" class="mb-4"></ul>
@@ -49,6 +49,8 @@
                 </select>
                 <button onclick="addTask()" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600 add-button">Add Task</button>
             </div>
+
+
             <!-- Upcoming Events Widget -->
             <div class="widget p-6">
                 <h2 class="text-xl font-semibold mb-4"><i class="fas fa-calendar-alt mr-2"></i>Upcoming Events</h2>
@@ -58,8 +60,8 @@
                 <button onclick="addEvent()" class="w-full bg-indigo-500 text-white p-2 rounded hover:bg-indigo-600">Add Event</button>
             </div>
 
-            <!-- Reminders Widget -->
-            <div class="widget p-6">
+             <!-- Reminders Widget (Updated) -->
+             <div class="widget p-6">
                 <h2 class="text-xl font-semibold mb-4"><i class="far fa-bell mr-2"></i>Reminders</h2>
                 <ul id="reminderList" class="mb-4"></ul>
                 <input type="text" id="newReminder" placeholder="New reminder" class="w-full p-2 mb-2 border rounded">
@@ -357,47 +359,6 @@
   </div>
 </div>
 
- <!-- Typing Test Widget -->
- <div class="widget p-6 typing-test" id="typingTestWidget">
-    <h2 class="text-xl font-semibold mb-4"><i class="fas fa-keyboard mr-2"></i>Typing Test</h2>
-    <div class="flex mb-4">
-        <select id="testParagraphSelect" class="w-full p-2 mb-2 border rounded">
-            <option value="The quick brown fox jumps over the lazy dog.">Default</option>
-            <option value="Now is the time for all good men to come to the aid of their country.">Paragraph 2</option>
-            <option value="Peter Piper picked a peck of pickled peppers. A peck of pickled peppers Peter Piper picked. If Peter Piper picked a peck of pickled peppers, where's the peck of pickled peppers Peter Piper picked?">Paragraph 3</option>
-            <!-- Add more paragraph options here -->
-        </select>
-        <input type="number" id="testTime" value="60" min="10" class="w-16 border rounded px-2 py-1 ml-2">
-        <button onclick="setTestTime()" class="bg-purple-500 text-white p-2 rounded hover:bg-purple-600 ml-2">Set Time</button>
-    </div>
-    <p id="testParagraph" class="mb-4"></p> 
-    <textarea id="userInput" placeholder="Type here..." disabled></textarea>
-    <div class="flex justify-center">
-        <button onclick="startTest()" class="start-button mr-2">Start</button>
-        <button onclick="stopTest()" class="stop-button">Stop</button>
-    </div>
-    <div class="timer mb-4">
-        <span id="timeLeft">00:00</span>
-    </div>
-    <div id="result" class="result" style="display: none;">
-        <div class="result-item">
-            <p class="result-label">Time Taken:</p>
-            <p class="result-value" id="timeTaken"></p>
-        </div>
-        <div class="result-item">
-            <p class="result-label">Words Per Minute (WPM):</p>
-            <p class="result-value" id="wpm"></p>
-        </div>
-        <div class="result-item">
-            <p class="result-label">Accuracy:</p>
-            <p class="result-value" id="accuracy"></p>
-        </div>
-    </div>
-</div>
-
-
-
-
 <!-- MAP -->
 <div class="widget p-6">
     <h2 class="text-xl font-semibold mb-4"><i class="fas fa-map-marker-alt mr-2"></i>Location</h2>
@@ -405,6 +366,28 @@
     <p class="mt-2">Latitude: <span id="latitude"></span></p>
     <p class="mt-1">Longitude: <span id="longitude"></span></p>
 </div>
+
+
+
+
+ <!-- Typing Test Widget -->
+<div class="widget p-6" id="typingTestWidget">
+    <h2 class="text-xl font-semibold mb-4"><i class="fas fa-keyboard mr-2"></i>Typing Test</h2>
+    <div class="text-center mb-4">
+        <p id="typingTestText" class="text-lg mb-4">Type the following text:</p>
+        <p id="textToType" class="font-bold text-xl mb-4">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <textarea id="userInput" placeholder="Start typing here..." class="w-full p-2 mb-2 border rounded" oninput="checkTyping()"></textarea>
+    <div id="result" class="text-center mt-4">
+        <p id="wordsPerMinute" class="text-lg"></p>
+        <p id="accuracy" class="text-lg"></p>
+    </div>
+</div>
+
+
+
+
+
 
 
 

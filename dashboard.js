@@ -71,62 +71,64 @@ function setRandomQuote() {
 setRandomQuote();
 setInterval(setRandomQuote, 3600000); // Update every 6 hours
 
-// Reminders
+// Reminders (Updated)
 function addReminder() {
-    const reminderInput = document.getElementById('newReminder');
-    const reminderTimeInput = document.getElementById('reminderTime');
-    const reminderList = document.getElementById('reminderList');
+  const reminderInput = document.getElementById('newReminder');
+  const reminderTimeInput = document.getElementById('reminderTime');
+  const reminderList = document.getElementById('reminderList');
 
-    if (reminderInput.value.trim() !== '' && reminderTimeInput.value.trim() !== '') {
-        const reminderText = `${reminderInput.value} - ${new Date(reminderTimeInput.value).toLocaleString()}`;
-        const li = document.createElement('li');
-        li.innerHTML =
-            `<div class="flex items-center justify-between py-2">
-                <div>
-                    <input type="checkbox" onchange="updateProductivityScore()" class="mr-2">
-                    <span>${reminderText}</span>
-                </div>
-                <button onclick="this.closest('li').remove(); updateProductivityScore()" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>`;
-        reminderList.appendChild(li);
-        reminderInput.value = '';
-        reminderTimeInput.value = '';
-        updateProductivityScore();
-    }
+  if (reminderInput.value.trim() !== '' && reminderTimeInput.value.trim() !== '') {
+      const reminderText = `${reminderInput.value} - ${new Date(reminderTimeInput.value).toLocaleString()}`;
+      const li = document.createElement('li');
+      li.innerHTML = `
+          <div class="flex items-center justify-between py-2">
+              <div class="flex items-center">  <!-- Added this inner div -->
+                  <input type="checkbox" onchange="updateProductivityScore()" class="mr-2">
+                  <span>${reminderText}</span>
+              </div>
+              <button onclick="this.closest('li').remove(); updateProductivityScore()" class="text-red-500 hover:text-red-700">
+                  <i class="fas fa-trash"></i>
+              </button>
+          </div>
+      `;
+      reminderList.appendChild(li);
+      reminderInput.value = '';
+      reminderTimeInput.value = '';
+      updateProductivityScore();
+  }
 }
 
-// Tasks
+
+// Tasks (Updated)
 function addTask() {
-    const taskInput = document.getElementById('newTask');
-    const taskTypeSelect = document.getElementById('taskType');
-    const taskImportanceSelect = document.getElementById('taskImportance');
-    const taskList = document.getElementById('taskList');
+  const taskInput = document.getElementById('newTask');
+  const taskTypeSelect = document.getElementById('taskType');
+  const taskImportanceSelect = document.getElementById('taskImportance');
+  const taskList = document.getElementById('taskList');
 
-    if (taskInput.value.trim() !== '') {
-        const taskText = taskInput.value;
-        const taskType = taskTypeSelect.value;
-        const taskImportance = taskImportanceSelect.value;
+  if (taskInput.value.trim() !== '') {
+      const taskText = taskInput.value;
+      const taskType = taskTypeSelect.value;
+      const taskImportance = taskImportanceSelect.value;
 
-        const li = document.createElement('li');
-        li.innerHTML =
-            `<div class="flex items-center justify-between py-2">
-                <div>
-                    <input type="checkbox" onchange="updateProductivityScore()" class="mr-2" data-importance="${taskImportance}">
-                    <span>${taskText} (${taskType}) - Importance: ${taskImportance}</span>
-                </div>
-                <button onclick="this.closest('li').remove(); updateProductivityScore()" class="text-red-500 hover:text-red-700">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>`;
-        taskList.appendChild(li);
+      const li = document.createElement('li');
+      li.innerHTML = `
+          <div class="flex items-center justify-between py-2">
+              <div class="flex items-center">  <!-- Added this inner div -->
+                  <input type="checkbox" onchange="updateProductivityScore()" class="mr-2" data-importance="${taskImportance}">
+                  <span>${taskText} (${taskType}) - Importance: ${taskImportance}</span>
+              </div>
+              <button onclick="this.closest('li').remove(); updateProductivityScore()" class="text-red-500 hover:text-red-700">
+                  <i class="fas fa-trash"></i>
+              </button>
+          </div>
+      `;
+      taskList.appendChild(li);
 
-        taskInput.value = '';
-        updateProductivityScore();
-    }
+      taskInput.value = '';
+      updateProductivityScore();
+  }
 }
-
 // Water Intake Tracker
 let waterIntake = 0;
 function addWater() {
@@ -826,105 +828,39 @@ submitPrompt.addEventListener('click', () => {
 
 
 // Typing Test Widget
-let testParagraph = document.getElementById('testParagraph');
-let userInput = document.getElementById('userInput');
-let timeLeftElement = document.getElementById('timeLeft');
-let timeTakenElement = document.getElementById('timeTaken');
-let wpmElement = document.getElementById('wpm');
-let accuracyElement = document.getElementById('accuracy');
-let typingTestWidget = document.getElementById('typingTestWidget'); 
 
 let startTime;
 let endTime;
-let testTime = 60; // Default test time in seconds
-let intervalId;
+const typingTestText = document.getElementById('textToType').textContent;
 
-function setTestTime() {
-  testTime = parseInt(document.getElementById('testTime').value);
-  updateTestParagraph(testTime); // Update the paragraph based on time
-}
-
-function startTest() {
-  testParagraph = document.getElementById('testParagraph').textContent;
-  userInput.disabled = false;
-  userInput.value = '';
-  userInput.focus();
-  document.getElementById('result').style.display = 'none';
-  startTime = new Date();
-  timeLeftElement.textContent = formatTime(testTime);
-  intervalId = setInterval(updateTimer, 1000);
-  // Removed animation code
-}
-
-function stopTest() {
-  clearInterval(intervalId);
-  endTime = new Date();
-  calculateResult();
-  // Removed animation code
-}
-
-function updateTimer() {
-  const timerMinutes = document.getElementById('timerMinutes').value;
-  if (timerMinutes > 0) {
-      focusTimeRemaining = timerMinutes * 60;  // Update focus time in seconds
-      updateFocusTimer();
-  }
-}
-
-function calculateResult() {
-  const timeTaken = (endTime.getTime() - startTime.getTime()) / 1000;
-  const userInput = document.getElementById('userInput').value;
-
-  const words = testParagraph.split(' ');
-  const correctWords = calculateCorrectWords(userInput, words);
-  const accuracy = (correctWords / words.length) * 100;
-  const wpm = Math.round((correctWords / timeTaken) * 60);
-
-  timeTakenElement.textContent = timeTaken.toFixed(2);
-  wpmElement.textContent = wpm;
-  accuracyElement.textContent = accuracy.toFixed(2);
-
-  document.getElementById('result').style.display = 'block';
-  userInput.disabled = true;
-}
-
-function calculateCorrectWords(userInput, words) {
-  let correctWords = 0;
-  const userWords = userInput.split(' ');
-  for (let i = 0; i < words.length && i < userWords.length; i++) {
-    if (words[i] === userWords[i]) {
-      correctWords++;
+function checkTyping() {
+    const userInput = document.getElementById('userInput').value;
+    
+    if (!startTime) {
+        startTime = new Date();
     }
-  }
-  return correctWords;
+
+    if (userInput === typingTestText) {
+        endTime = new Date();
+        calculateResults();
+    }
 }
 
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+function calculateResults() {
+    const timeDiff = (endTime - startTime) / 1000; // Time in seconds
+    const words = typingTestText.split(' ').length;
+    const wordsPerMinute = Math.round((words / timeDiff) * 60);
+    const accuracy = ((typingTestText === document.getElementById('userInput').value) ? 100 : 0).toFixed(2);
+
+    document.getElementById('wordsPerMinute').textContent = `Words per Minute: ${wordsPerMinute}`;
+    document.getElementById('accuracy').textContent = `Accuracy: ${accuracy}%`;
+
+    // Reset for next test
+    startTime = null;
+    endTime = null;
+    document.getElementById('userInput').value = '';
 }
 
-function updateTestParagraph(testTime) {
-  // Logic to create a paragraph with a variable number of words
-  const baseParagraph = "The quick brown fox jumps over the lazy dog."; // Your base paragraph
-  const wordsToAdd = Math.floor((testTime - 60) / 10); // Add words based on time increase
-  const newParagraph = baseParagraph.split(' ').concat(Array(wordsToAdd).fill('words')).join(' '); 
-  document.getElementById('testParagraph').textContent = newParagraph;
-}
-
-// Event Listeners
-document.getElementById('userInput').addEventListener('keyup', function(event) {
-  if (event.key === 'Enter') {
-    stopTest(); // Stop the test on Enter key press
-  }
-});
-
-// Update test paragraph when selected
-document.getElementById('testParagraphSelect').addEventListener('change', function() {
-  document.getElementById('testParagraph').textContent = this.value;
-  updateTestParagraph(testTime); // Update paragraph based on current time
-});
 
 
 
@@ -1071,201 +1007,84 @@ window.onload = function() {
 };
 
 
-// Currency Converter Widget (Modified to work within your dashboard)
-function fetchConversionRate() {
-  const apiKey = 'YOUR_API_KEY'; // Replace with your Fixer API Key
-  const fromCurrency = document.getElementById('fromCurrencySelect').value;
-  const toCurrency = document.getElementById('toCurrencySelect').value;
-  const amount = document.getElementById('amountInput').value;
+// ... (Your Other JavaScript Code) ... 
 
-  const apiUrl = `https://data.fixer.io/api/convert?access_key=${apiKey}&from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
+// Currency Converter Widget 
+const fromCurrencySelect = document.getElementById('fromCurrencySelect');
+const toCurrencySelect = document.getElementById('toCurrencySelect');
+const amountInput = document.getElementById('amountInput');
+const conversionResult = document.getElementById('conversionResult');
 
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        document.getElementById('conversionResult').textContent = data.result;
-      } else {
-        console.error('Error fetching conversion data:', data.error);
-        document.getElementById('conversionResult').textContent = 'Error';
-      }
-    })
-    .catch(error => console.error('Error fetching data:', error));
-}
+let latestRates = {}; // Store latest rates
 
-// Initialize dropdown menus with available currencies
-function populateCurrencyDropdown(dropdownId) {
-    const apiUrl = `https://data.fixer.io/api/symbols?access_key=YOUR_API_KEY`; // Replace with your Fixer API Key
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const dropdown = document.getElementById(dropdownId);
-                for (const currencyCode in data.symbols) {
-                    const option = document.createElement('option');
-                    option.value = currencyCode;
-                    option.text = data.symbols[currencyCode];
-                    dropdown.add(option);
-                }
-                // Call fetchConversionRate after populating dropdowns for the initial conversion
-                fetchConversionRate();
-            } else {
-                console.error('Error fetching currency symbols:', data.error);
-            }
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
-
-window.onload = function() {
-    // ... Your other dashboard initialization code ... 
-
-    populateCurrencyDropdown('fromCurrencySelect'); 
-    populateCurrencyDropdown('toCurrencySelect');
-
-    // Add event listeners after populating dropdowns
-    document.getElementById('fromCurrencySelect').addEventListener('change', fetchConversionRate);
-    document.getElementById('toCurrencySelect').addEventListener('change', fetchConversionRate);
-    document.getElementById('amountInput').addEventListener('input', fetchConversionRate); // Trigger on input change
-};
-
-
-
-// Currency Converter Widget (Modified to work within your dashboard)
-function fetchConversionRate() {
-  const apiKey = 'ba145ba106ad93c5bb9197747a808208'; // Replace with your Fixer API Key
-  const fromCurrency = document.getElementById('fromCurrencySelect').value;
-  const toCurrency = document.getElementById('toCurrencySelect').value;
-  const amount = document.getElementById('amountInput').value;
-
-  const apiUrl = `https://data.fixer.io/api/convert?access_key=${apiKey}&from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
-
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        document.getElementById('conversionResult').textContent = data.result;
-      } else {
-        console.error('Error fetching conversion data:', data.error);
-        document.getElementById('conversionResult').textContent = 'Error';
-      }
-    })
-    .catch(error => console.error('Error fetching data:', error));
-}
-
-// Initialize dropdown menus with available currencies
-function populateCurrencyDropdown(dropdownId) {
-    const apiUrl = `https://data.fixer.io/api/symbols?access_key=ba145ba106ad93c5bb9197747a808208`; // Replace with your Fixer API Key
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const dropdown = document.getElementById(dropdownId);
-                for (const currencyCode in data.symbols) {
-                    const option = document.createElement('option');
-                    option.value = currencyCode;
-                    option.text = data.symbols[currencyCode];
-                    dropdown.add(option);
-                }
-                // Call fetchConversionRate after populating dropdowns for the initial conversion
-                fetchConversionRate();
-            } else {
-                console.error('Error fetching currency symbols:', data.error);
-            }
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
-
-window.onload = function() {
-    // ... Your other dashboard initialization code ... 
-
-    populateCurrencyDropdown('fromCurrencySelect'); 
-    populateCurrencyDropdown('toCurrencySelect');
-
-    // Add event listeners after populating dropdowns
-    document.getElementById('fromCurrencySelect').addEventListener('change', fetchConversionRate);
-    document.getElementById('toCurrencySelect').addEventListener('change', fetchConversionRate);
-    document.getElementById('amountInput').addEventListener('input', fetchConversionRate); // Trigger on input change
-};
-
-// ... Your other dashboard JavaScript functions ... 
-
+// Fetch Latest Exchange Rates
 function fetchLatestRates() {
-    const apiKey = 'apikey'; // Your Fixer API key
-    const apiUrl = `https://data.fixer.io/api/latest?access_key=${apiKey}`;
-  
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          // Save the latest rates for use in conversions
-          window.latestRates = data.rates;
-  
-          // Populate currency dropdowns with available currencies
-          populateCurrencyDropdown('fromCurrencySelect', data.rates);
-          populateCurrencyDropdown('toCurrencySelect', data.rates);
-          console.log('Latest exchange rates:', window.latestRates);
-        } else {
-          console.error('Fixer API Error:', data.error);
-          document.getElementById('conversionResult').textContent = `Error: ${data.error.info}`;
-        }
-      })
-      .catch(error => {
-        console.error('Network error:', error);
-        document.getElementById('conversionResult').textContent = 'Error: Unable to fetch data';
-      });
+  const apiKey = 'null'; // Replace with your actual API key
+  const apiUrl = `https://data.fixer.io/api/latest?access_key=${apiKey}`;
+
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        latestRates = data.rates; // Store the latest rates
+        populateCurrencyDropdown(fromCurrencySelect, latestRates);
+        populateCurrencyDropdown(toCurrencySelect, latestRates);
+        calculateConversion(); // Calculate initial conversion
+      } else {
+        console.error('Fixer API Error:', data.error);
+        conversionResult.textContent = `Error: ${data.error.info}`;
+      }
+    })
+    .catch(error => {
+      console.error('Network error:', error);
+      conversionResult.textContent = 'Error: Unable to fetch data';
+    });
+}
+
+// Function to populate dropdowns
+function populateCurrencyDropdown(dropdown, rates) {
+  dropdown.innerHTML = ''; // Clear existing options
+
+  for (const currencyCode in rates) {
+    const option = document.createElement('option');
+    option.value = currencyCode;
+    option.text = currencyCode;
+    dropdown.add(option);
   }
-  
-  // Function to populate dropdowns
-  function populateCurrencyDropdown(dropdownId, rates) {
-    const dropdown = document.getElementById(dropdownId);
-    dropdown.innerHTML = ''; // Clear existing options
-  
-    // Add each currency as an option
-    for (const currencyCode in rates) {
-      const option = document.createElement('option');
-      option.value = currencyCode;
-      option.text = currencyCode;
-      dropdown.add(option);
-    }
+}
+
+// Calculate the conversion based on latest rates
+function calculateConversion() {
+  const fromCurrency = fromCurrencySelect.value;
+  const toCurrency = toCurrencySelect.value;
+  const amount = parseFloat(amountInput.value);
+
+  if (latestRates && fromCurrency && toCurrency) {
+    const conversionRate = latestRates[toCurrency] / latestRates[fromCurrency];
+    const convertedAmount = amount * conversionRate;
+    conversionResult.textContent = `Converted Amount: ${convertedAmount.toFixed(2)}`;
+  } else {
+    conversionResult.textContent = 'Error: Rates not available.';
   }
-  
+}
 
+// Event listeners for real-time conversion
+window.onload = function() {
+  fetchLatestRates(); // Fetch latest rates on page load
 
-  // Calculate the conversion based on latest rates
-  function calculateConversion() {
-    const fromCurrency = document.getElementById('fromCurrencySelect').value;
-    const toCurrency = document.getElementById('toCurrencySelect').value;
-    const amount = parseFloat(document.getElementById('amountInput').value);
-  
-    if (window.latestRates) {
-      // Perform conversion: amount in base currency * (toCurrency rate / fromCurrency rate)
-      const conversionRate = window.latestRates[toCurrency] / window.latestRates[fromCurrency];
-      const convertedAmount = amount * conversionRate;
-  
-      document.getElementById('conversionResult').textContent = `Converted Amount: ${convertedAmount.toFixed(2)}`;
-    } else {
-      document.getElementById('conversionResult').textContent = 'Error: Rates not available.';
-    }
-  }
-  
-  // Event listeners for real-time conversion
-  window.onload = function() {
-    fetchLatestRates(); // Fetch latest rates on page load
-  
-    // Add event listeners for real-time conversion
-    document.getElementById('fromCurrencySelect').addEventListener('change', calculateConversion);
-    document.getElementById('toCurrencySelect').addEventListener('change', calculateConversion);
-    document.getElementById('amountInput').addEventListener('input', calculateConversion);
-  };
-  
+  fromCurrencySelect.addEventListener('change', calculateConversion);
+  toCurrencySelect.addEventListener('change', calculateConversion);
+  amountInput.addEventListener('input', calculateConversion); // Trigger on input change
+  initMap();
+};
 
+// ... (Your Other JavaScript Code) ... 
 
-
-
-
-// ... (Your Existing JavaScript) ... 
 
 // Map Widget Logic 
 let map;
@@ -1291,10 +1110,6 @@ function initMap() {
     });
 }
 
-// Initialize the map when the page loads 
-window.onload = function() {
-    // ... (Your Other Initialization Code) ...
-    initMap();
-};
+
 
 // ... (Your Other JavaScript) ... 
