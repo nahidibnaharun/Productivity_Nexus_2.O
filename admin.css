@@ -1,0 +1,92 @@
+/* --- General Styles & Background Animation --- */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+    background-size: 400% 400%;
+    animation: gradientAnimation 30s ease infinite; /* Slower animation */
+    color: white; /* Set text color to white */
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* --- Main Container (No Background) --- */
+  .container {
+    background: none;
+    width: 90%; /* Adjust width as needed */
+    margin: 0 auto;
+    max-width: 1200px; /* Limit maximum width */
+  }
+  
+  /* ---  NEW STYLES FOR ADMIN DASHBOARD --- */
+  .logout-button {
+    background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607); /* Orange gradient */
+    background-size: 200% 100%;
+    animation: buttonGradientAnimation 4s linear infinite; 
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 12px 24px; /* Slightly larger padding */
+    border: none;
+    border-radius: 8px; /* Slightly more rounded corners */
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .logout-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .widget {
+      padding: 30px; /* Increase padding */
+      margin-bottom: 30px; /* Increase margin */
+  }
+  
+  /* Style the table for better readability */
+  #usersTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  #usersTable th, 
+  #usersTable td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #usersTable th {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Style the Create User button */
+  .bg-blue-500 {
+    background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Green gradient */
+    background-size: 200% 100%;
+    animation: buttonGradientAnimation 4s linear infinite; 
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 12px 24px; /* Slightly larger padding */
+    border: none;
+    border-radius: 8px; /* Slightly more rounded corners */
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .bg-blue-500:hover {
+    transform: scale(1.05);
+  }

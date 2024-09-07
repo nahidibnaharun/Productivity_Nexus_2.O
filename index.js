@@ -1,28 +1,76 @@
-// Simulated user database 
+// Simulated user database (for demonstration purposes ONLY)
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 function showLogin() {
     document.getElementById('loginForm').style.display = 'block';
     document.getElementById('registrationForm').style.display = 'none';
+    document.getElementById('adminLoginForm').style.display = 'none';
 }
 
 function showRegistration() {
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('registrationForm').style.display = 'block';
+    document.getElementById('adminLoginForm').style.display = 'none';
+}
+
+function showAdminLogin() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registrationForm').style.display = 'none';
+    document.getElementById('adminLoginForm').style.display = 'block';
 }
 
 function login() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    const user = users.find(u => u.username === username && u.password === password);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "login.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    if (user) {
-        alert('Login successful!');
-        window.location.href = 'dashboard.html';
-    } else {
-        alert('Invalid username or password');
-    }
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Successful login
+            if (xhr.responseText === "Login successful!") {
+                sessionStorage.setItem('logged_in', true); 
+                sessionStorage.setItem('username', username); 
+                window.location.href = 'dashboard.html';
+            } else {
+                alert(xhr.responseText);
+            }
+        } else {
+            // Error handling
+            alert(xhr.responseText);
+        }
+    };
+
+    xhr.send("username=" + username + "&password=" + password);
+}
+
+function adminLogin() {
+    const adminUsername = document.getElementById('adminUsername').value;
+    const adminPassword = document.getElementById('adminPassword').value;
+
+    // AJAX Request
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "admin_login.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Successful admin login
+            if (xhr.responseText === "Admin login successful!") {
+                sessionStorage.setItem('admin_logged_in', true);
+                window.location.href = 'admin.html';
+            } else {
+                alert(xhr.responseText);
+            }
+        } else {
+            // Error handling
+            alert(xhr.responseText);
+        }
+    };
+
+    xhr.send("adminUsername=" + adminUsername + "&adminPassword=" + adminPassword);
 }
 
 function validateEmail(email) {
@@ -51,15 +99,23 @@ function register() {
         return;
     }
 
-    if (users.some(u => u.username === username)) {
-        alert('Username already exists');
-        return;
-    }
+    // AJAX Request to save data to the database
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "register.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    users.push({ name, username, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
-    alert('Registration successful! Please login.');
-    showLogin();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            alert(xhr.responseText); // Display the response from the server
+            if (xhr.responseText === "Registration successful!") {
+                showLogin();
+            } 
+        } else {
+            alert(xhr.responseText);
+        }
+    };
+
+    xhr.send("name=" + name + "&username=" + username + "&email=" + email + "&password=" + password);
 }
 
 // Initialize with login form shown
@@ -72,6 +128,8 @@ document.addEventListener('keydown', function(event) {
             login(); 
         } else if (document.getElementById('registrationForm').style.display === 'block') {
             register();
+        } else if (document.getElementById('adminLoginForm').style.display === 'block') {
+            adminLogin();
         }
     }
 }); 
