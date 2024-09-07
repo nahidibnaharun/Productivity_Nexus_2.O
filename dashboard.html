@@ -6,8 +6,10 @@
     <title>Improved Productivity Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/nahidibnaharun/Productivity_Nexus_2.O/47e576223ef09fbde6ed1faaf3264ddf69891722/monday-icon-svgrepo-com.svg">
     <link rel="stylesheet" href="dashboard.css">
+    
 </head>
 <body class="bg-gray-100">
     <!-- Gradient Header with Logout Button -->
@@ -396,11 +398,18 @@
 
 
 
-<!-- ... (your other widgets) ... -->
+<!-- MAP -->
+<div class="widget p-6">
+    <h2 class="text-xl font-semibold mb-4"><i class="fas fa-map-marker-alt mr-2"></i>Location</h2>
+    <div id="map" style="height: 300px;"></div>
+    <p class="mt-2">Latitude: <span id="latitude"></span></p>
+    <p class="mt-1">Longitude: <span id="longitude"></span></p>
 </div>
-</div>
-        </div>
+
+
+
     </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> 
     <script src="dashboard.js"></script>
 </body>
 </html>

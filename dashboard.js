@@ -1231,6 +1231,8 @@ function fetchLatestRates() {
     }
   }
   
+
+
   // Calculate the conversion based on latest rates
   function calculateConversion() {
     const fromCurrency = document.getElementById('fromCurrencySelect').value;
@@ -1263,89 +1265,36 @@ function fetchLatestRates() {
 
 
 
+// ... (Your Existing JavaScript) ... 
 
-// Spot the Difference Game Code (To be added to your dashboard.js)
+// Map Widget Logic 
+let map;
+let marker;
 
-const imageContainer = document.getElementById('imageContainer');
-const differenceCountElement = document.getElementById('differenceCount');
-const differencesFoundElement = document.getElementById('differencesFound');
-const startSpotTheDifferenceButton = document.getElementById('startSpotTheDifferenceButton');
+function initMap() {
+    map = L.map('map').setView([23.7104, 90.4125], 13); // Default location (Bangladesh) 
 
-let differenceCount = 0; 
-let differencesFound = 0; 
-let image1, image2;
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+    }).addTo(map);
 
-// Images for Spot the Difference (You'll need to provide these)
-const imageUrls = [
-  {
-    original: "image1-original.jpg", // Replace with the actual URLs
-    modified: "image1-modified.jpg"
-  },
-  {
-    original: "image2-original.jpg",
-    modified: "image2-modified.jpg"
-  },
-  // ... add more image pairs as needed
-];
+    map.on('click', function(e) {
+        if (marker) {
+            map.removeLayer(marker);
+        }
 
-function startSpotTheDifference() {
-  const randomIndex = Math.floor(Math.random() * imageUrls.length);
-  const imagePair = imageUrls[randomIndex];
+        marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
 
-  // Reset variables
-  differenceCount = 0;
-  differencesFound = 0;
-  differencesFoundElement.textContent = differencesFound;
-  differenceCountElement.textContent = differenceCount;
-
-  // Load the images
-  image1 = new Image();
-  image1.src = imagePair.original;
-  image2 = new Image();
-  image2.src = imagePair.modified;
-
-  // Add the images to the container
-  imageContainer.innerHTML = `
-    <div class="image-wrapper">
-      <img id="img1" src="${imagePair.original}" alt="Original" onclick="checkDifference(1)">
-    </div>
-    <div class="image-wrapper">
-      <img id="img2" src="${imagePair.modified}" alt="Modified" onclick="checkDifference(2)">
-    </div>
-  `;
+        // Update the displayed coordinates
+        document.getElementById('latitude').textContent = e.latlng.lat.toFixed(4); 
+        document.getElementById('longitude').textContent = e.latlng.lng.toFixed(4); 
+    });
 }
 
-function checkDifference(imageIndex) {
-  if (imageIndex === 1) {
-    if (image1.src === image2.src) {
-      alert("No differences found!");
-      startSpotTheDifference(); // Start a new game
-    } else {
-      alert("Good job! You found a difference!");
-      differencesFound++;
-      differencesFoundElement.textContent = differencesFound;
-      if (differencesFound >= differenceCount) {
-        alert("You found all the differences! Congratulations!");
-        startSpotTheDifference(); // Start a new game
-      }
-    }
-  } else if (imageIndex === 2) {
-    alert("Try clicking the other image to find the difference!");
-  }
-}
+// Initialize the map when the page loads 
+window.onload = function() {
+    // ... (Your Other Initialization Code) ...
+    initMap();
+};
 
-function countDifferences() {
-  // You'll need to implement logic to detect differences in images
-  // This is a placeholder for now. In a real implementation, you would 
-  // analyze the pixels of the images to determine the number of differences.
-  differenceCount = 3; // Replace with the actual number of differences
-  differenceCountElement.textContent = differenceCount;
-}
-
-// Start a new game when the button is clicked
-startSpotTheDifferenceButton.addEventListener('click', () => {
-  startSpotTheDifference();
-  countDifferences();
-});
-
-
+// ... (Your Other JavaScript) ... 

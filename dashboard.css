@@ -1152,6 +1152,30 @@ li .delete-button,
   font-size: 0.9em;
 }
 
+/* MAP */
 
-/* shapes */
-/* ... (your existing CSS) ... */
+
+#map-widget {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.input-group {
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
