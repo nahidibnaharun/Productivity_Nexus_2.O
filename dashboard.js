@@ -297,29 +297,30 @@ function updateBookList() {
 
 // Calculator
 function initCalculator() {
-    let calcInput = document.getElementById('calcInput');
-    let calcValue = '';
+  let calcInput = document.getElementById('calcInput');
+  let calcValue = '';
 
-    document.querySelectorAll('.calc-button').forEach(button => {
-        button.addEventListener('click', function() {
-            let value = this.textContent;
+  document.querySelectorAll('.calc-button').forEach(button => {
+      button.addEventListener('click', function() {
+          let value = this.textContent;
 
-            if (value === '=') {
-                try {
-                    calcValue = eval(calcValue);
-                } catch {
-                    calcValue = 'Error';
-                }
-            } else if (value === 'Clear') {
-                calcValue = '';
-            } else {
-                calcValue += value;
-            }
+          if (value === '=') {
+              try {
+                  calcValue = eval(calcValue);
+              } catch (error) {
+                  calcValue = 'Error'; // Display error on invalid expression
+              }
+          } else if (value === 'Clear') {
+              calcValue = '';
+          } else {
+              calcValue += value;
+          }
 
-            calcInput.value = calcValue;
-        });
-    });
+          calcInput.value = calcValue;
+      });
+  });
 }
+
 // Mindfulness & Meditation Widget Script
 
 let breathingInterval;
@@ -798,7 +799,6 @@ submitPrompt.addEventListener('click', () => {
 });
 
 
-//typing test 
 // Typing Test Widget
 let testParagraph = document.getElementById('testParagraph');
 let userInput = document.getElementById('userInput');
@@ -838,10 +838,10 @@ function stopTest() {
 }
 
 function updateTimer() {
-  testTime--;
-  timeLeftElement.textContent = formatTime(testTime);
-  if (testTime <= 0) {
-    stopTest();
+  const timerMinutes = document.getElementById('timerMinutes').value;
+  if (timerMinutes > 0) {
+      focusTimeRemaining = timerMinutes * 60;  // Update focus time in seconds
+      updateFocusTimer();
   }
 }
 
@@ -900,7 +900,7 @@ document.getElementById('testParagraphSelect').addEventListener('change', functi
   updateTestParagraph(testTime); // Update paragraph based on current time
 });
 
-// ... (your other JavaScript functions) ...
+
 
 // Fetch 5-Day Forecast Data
 function fetchFiveDayForecast() {
@@ -944,8 +944,6 @@ window.onload = function() {
 };
 
 
-// ... (your other JavaScript functions) ...
-// ... (your other JavaScript code) ...
 
 // Fetch Air Pollution Data
 function fetchAirPollutionData() {
@@ -1047,4 +1045,281 @@ window.onload = function() {
 };
 
 
-// ... (your other JavaScript functions) ...
+// Currency Converter Widget (Modified to work within your dashboard)
+function fetchConversionRate() {
+  const apiKey = 'YOUR_API_KEY'; // Replace with your Fixer API Key
+  const fromCurrency = document.getElementById('fromCurrencySelect').value;
+  const toCurrency = document.getElementById('toCurrencySelect').value;
+  const amount = document.getElementById('amountInput').value;
+
+  const apiUrl = `https://data.fixer.io/api/convert?access_key=${apiKey}&from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('conversionResult').textContent = data.result;
+      } else {
+        console.error('Error fetching conversion data:', data.error);
+        document.getElementById('conversionResult').textContent = 'Error';
+      }
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+// Initialize dropdown menus with available currencies
+function populateCurrencyDropdown(dropdownId) {
+    const apiUrl = `https://data.fixer.io/api/symbols?access_key=YOUR_API_KEY`; // Replace with your Fixer API Key
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const dropdown = document.getElementById(dropdownId);
+                for (const currencyCode in data.symbols) {
+                    const option = document.createElement('option');
+                    option.value = currencyCode;
+                    option.text = data.symbols[currencyCode];
+                    dropdown.add(option);
+                }
+                // Call fetchConversionRate after populating dropdowns for the initial conversion
+                fetchConversionRate();
+            } else {
+                console.error('Error fetching currency symbols:', data.error);
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+window.onload = function() {
+    // ... Your other dashboard initialization code ... 
+
+    populateCurrencyDropdown('fromCurrencySelect'); 
+    populateCurrencyDropdown('toCurrencySelect');
+
+    // Add event listeners after populating dropdowns
+    document.getElementById('fromCurrencySelect').addEventListener('change', fetchConversionRate);
+    document.getElementById('toCurrencySelect').addEventListener('change', fetchConversionRate);
+    document.getElementById('amountInput').addEventListener('input', fetchConversionRate); // Trigger on input change
+};
+
+
+
+// Currency Converter Widget (Modified to work within your dashboard)
+function fetchConversionRate() {
+  const apiKey = 'ba145ba106ad93c5bb9197747a808208'; // Replace with your Fixer API Key
+  const fromCurrency = document.getElementById('fromCurrencySelect').value;
+  const toCurrency = document.getElementById('toCurrencySelect').value;
+  const amount = document.getElementById('amountInput').value;
+
+  const apiUrl = `https://data.fixer.io/api/convert?access_key=${apiKey}&from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('conversionResult').textContent = data.result;
+      } else {
+        console.error('Error fetching conversion data:', data.error);
+        document.getElementById('conversionResult').textContent = 'Error';
+      }
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+// Initialize dropdown menus with available currencies
+function populateCurrencyDropdown(dropdownId) {
+    const apiUrl = `https://data.fixer.io/api/symbols?access_key=ba145ba106ad93c5bb9197747a808208`; // Replace with your Fixer API Key
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const dropdown = document.getElementById(dropdownId);
+                for (const currencyCode in data.symbols) {
+                    const option = document.createElement('option');
+                    option.value = currencyCode;
+                    option.text = data.symbols[currencyCode];
+                    dropdown.add(option);
+                }
+                // Call fetchConversionRate after populating dropdowns for the initial conversion
+                fetchConversionRate();
+            } else {
+                console.error('Error fetching currency symbols:', data.error);
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+window.onload = function() {
+    // ... Your other dashboard initialization code ... 
+
+    populateCurrencyDropdown('fromCurrencySelect'); 
+    populateCurrencyDropdown('toCurrencySelect');
+
+    // Add event listeners after populating dropdowns
+    document.getElementById('fromCurrencySelect').addEventListener('change', fetchConversionRate);
+    document.getElementById('toCurrencySelect').addEventListener('change', fetchConversionRate);
+    document.getElementById('amountInput').addEventListener('input', fetchConversionRate); // Trigger on input change
+};
+
+// ... Your other dashboard JavaScript functions ... 
+
+function fetchLatestRates() {
+    const apiKey = 'apikey'; // Your Fixer API key
+    const apiUrl = `https://data.fixer.io/api/latest?access_key=${apiKey}`;
+  
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Save the latest rates for use in conversions
+          window.latestRates = data.rates;
+  
+          // Populate currency dropdowns with available currencies
+          populateCurrencyDropdown('fromCurrencySelect', data.rates);
+          populateCurrencyDropdown('toCurrencySelect', data.rates);
+          console.log('Latest exchange rates:', window.latestRates);
+        } else {
+          console.error('Fixer API Error:', data.error);
+          document.getElementById('conversionResult').textContent = `Error: ${data.error.info}`;
+        }
+      })
+      .catch(error => {
+        console.error('Network error:', error);
+        document.getElementById('conversionResult').textContent = 'Error: Unable to fetch data';
+      });
+  }
+  
+  // Function to populate dropdowns
+  function populateCurrencyDropdown(dropdownId, rates) {
+    const dropdown = document.getElementById(dropdownId);
+    dropdown.innerHTML = ''; // Clear existing options
+  
+    // Add each currency as an option
+    for (const currencyCode in rates) {
+      const option = document.createElement('option');
+      option.value = currencyCode;
+      option.text = currencyCode;
+      dropdown.add(option);
+    }
+  }
+  
+  // Calculate the conversion based on latest rates
+  function calculateConversion() {
+    const fromCurrency = document.getElementById('fromCurrencySelect').value;
+    const toCurrency = document.getElementById('toCurrencySelect').value;
+    const amount = parseFloat(document.getElementById('amountInput').value);
+  
+    if (window.latestRates) {
+      // Perform conversion: amount in base currency * (toCurrency rate / fromCurrency rate)
+      const conversionRate = window.latestRates[toCurrency] / window.latestRates[fromCurrency];
+      const convertedAmount = amount * conversionRate;
+  
+      document.getElementById('conversionResult').textContent = `Converted Amount: ${convertedAmount.toFixed(2)}`;
+    } else {
+      document.getElementById('conversionResult').textContent = 'Error: Rates not available.';
+    }
+  }
+  
+  // Event listeners for real-time conversion
+  window.onload = function() {
+    fetchLatestRates(); // Fetch latest rates on page load
+  
+    // Add event listeners for real-time conversion
+    document.getElementById('fromCurrencySelect').addEventListener('change', calculateConversion);
+    document.getElementById('toCurrencySelect').addEventListener('change', calculateConversion);
+    document.getElementById('amountInput').addEventListener('input', calculateConversion);
+  };
+  
+
+
+
+
+
+
+// Spot the Difference Game Code (To be added to your dashboard.js)
+
+const imageContainer = document.getElementById('imageContainer');
+const differenceCountElement = document.getElementById('differenceCount');
+const differencesFoundElement = document.getElementById('differencesFound');
+const startSpotTheDifferenceButton = document.getElementById('startSpotTheDifferenceButton');
+
+let differenceCount = 0; 
+let differencesFound = 0; 
+let image1, image2;
+
+// Images for Spot the Difference (You'll need to provide these)
+const imageUrls = [
+  {
+    original: "image1-original.jpg", // Replace with the actual URLs
+    modified: "image1-modified.jpg"
+  },
+  {
+    original: "image2-original.jpg",
+    modified: "image2-modified.jpg"
+  },
+  // ... add more image pairs as needed
+];
+
+function startSpotTheDifference() {
+  const randomIndex = Math.floor(Math.random() * imageUrls.length);
+  const imagePair = imageUrls[randomIndex];
+
+  // Reset variables
+  differenceCount = 0;
+  differencesFound = 0;
+  differencesFoundElement.textContent = differencesFound;
+  differenceCountElement.textContent = differenceCount;
+
+  // Load the images
+  image1 = new Image();
+  image1.src = imagePair.original;
+  image2 = new Image();
+  image2.src = imagePair.modified;
+
+  // Add the images to the container
+  imageContainer.innerHTML = `
+    <div class="image-wrapper">
+      <img id="img1" src="${imagePair.original}" alt="Original" onclick="checkDifference(1)">
+    </div>
+    <div class="image-wrapper">
+      <img id="img2" src="${imagePair.modified}" alt="Modified" onclick="checkDifference(2)">
+    </div>
+  `;
+}
+
+function checkDifference(imageIndex) {
+  if (imageIndex === 1) {
+    if (image1.src === image2.src) {
+      alert("No differences found!");
+      startSpotTheDifference(); // Start a new game
+    } else {
+      alert("Good job! You found a difference!");
+      differencesFound++;
+      differencesFoundElement.textContent = differencesFound;
+      if (differencesFound >= differenceCount) {
+        alert("You found all the differences! Congratulations!");
+        startSpotTheDifference(); // Start a new game
+      }
+    }
+  } else if (imageIndex === 2) {
+    alert("Try clicking the other image to find the difference!");
+  }
+}
+
+function countDifferences() {
+  // You'll need to implement logic to detect differences in images
+  // This is a placeholder for now. In a real implementation, you would 
+  // analyze the pixels of the images to determine the number of differences.
+  differenceCount = 3; // Replace with the actual number of differences
+  differenceCountElement.textContent = differenceCount;
+}
+
+// Start a new game when the button is clicked
+startSpotTheDifferenceButton.addEventListener('click', () => {
+  startSpotTheDifference();
+  countDifferences();
+});
+
+
