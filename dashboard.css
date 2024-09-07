@@ -322,28 +322,71 @@ li .delete-button,
   /* Use default Tailwind styles for delete buttons */
 }
 
-/* --- Calculator Button Styles --- */
-#calcInput {
-  font-size: 2em; /* Increase font size for the calculator screen */
+
+
+/* Calculator Widget Styles */
+#calculator {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center; /* Center align the content */
 }
 
+#calculator:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#calculator h2 {
+  font-size: 1.8em;
+  color: transparent;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  margin-bottom: 15px;
+}
+
+#display {
+  font-size: 2em;
+  background-color: white; /* White background for the input */
+  color: black; /* Set text color to black */
+  text-align: right; /* Align the text to the right */
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 90%;
+  margin: 0 auto 10px auto;
+  border-radius: 5px;
+}
+
+/* Cool Calculator Button Styles (Large and Rectangular) */
 .calc-button {
-  padding: 12px 24px;
+  padding: 16px 36px; /* Adjusted padding for rectangle shape */
   border: none;
-  border-radius: 8px;
+  border-radius: 10px; /* More rounded corners */
   color: white;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1.4em; /* Larger font size */
   background-size: 200% 100%;
   animation: buttonGradientAnimation 6s linear infinite;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  width: calc(100% / 2 - 22px); /* Adjust for 2 columns */ /*  Changed width  for  2  columns */
+  display: flex; /* Make the button a flex container */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
 }
 
 .calc-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1); /* Bigger on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger hover shadow */
 }
 
-/* --- Specific Colors for Calculator Buttons --- */
+/* Specific Colors for Calculator Buttons */
 .calc-button:nth-child(1),
 .calc-button:nth-child(2),
 .calc-button:nth-child(3),
@@ -352,29 +395,50 @@ li .delete-button,
 .calc-button:nth-child(7),
 .calc-button:nth-child(9),
 .calc-button:nth-child(10),
-.calc-button:nth-child(11) {
-  background-image: linear-gradient(135deg, #000000, #3801ff, #000000);
+.calc-button:nth-child(11),
+.calc-button:nth-child(13),
+.calc-button:nth-child(14) {
+  background-image: linear-gradient(135deg, #004dff, #00ff9d, #00ff9d); /* Number button gradient (Blue-Green) */
 }
 
 .calc-button:nth-child(4),
 .calc-button:nth-child(8),
 .calc-button:nth-child(12),
-.calc-button:nth-child(16) {
-  background-image: linear-gradient(135deg, #00ff0d, #13733b, #00ff4c);
-}
-
-.calc-button:nth-child(13),
-.calc-button:nth-child(14) {
-  background-image: linear-gradient(135deg, #0400ff, #000000, #7801ff);
+.calc-button:nth-child(16),
+.calc-button:nth-child(17) { /* Clear button */
+  background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607); /* Operator button gradient (Red-Orange) */
 }
 
 .calc-button:nth-child(15) {
-  background-image: linear-gradient(135deg, #ff0707, #00ff0d, #2294ff);
+  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Equal button gradient (Green) */
 }
 
-.calc-button:nth-child(17) {
-  background-image: linear-gradient(135deg, #ff0000, #ff000093, #ff0505);
+/* --- Animations --- */
+@keyframes buttonGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
 /* Book Tracker Widget Styles */
 .book-tracker {
   background-color: white;

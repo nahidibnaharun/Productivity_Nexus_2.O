@@ -295,31 +295,57 @@ function updateBookList() {
     });
 }
 
-// Calculator
-function initCalculator() {
-  let calcInput = document.getElementById('calcInput');
-  let calcValue = '';
 
-  document.querySelectorAll('.calc-button').forEach(button => {
-      button.addEventListener('click', function() {
-          let value = this.textContent;
+// Calculator Widget Logic
+let display = document.getElementById('display');
+let previousOperator = null;
+let previousOperand = null;
 
-          if (value === '=') {
-              try {
-                  calcValue = eval(calcValue);
-              } catch (error) {
-                  calcValue = 'Error'; // Display error on invalid expression
-              }
-          } else if (value === 'Clear') {
-              calcValue = '';
-          } else {
-              calcValue += value;
-          }
-
-          calcInput.value = calcValue;
-      });
-  });
+function appendNumber(number) {
+  display.value += number;
 }
+
+function appendOperator(operator) {
+  if (previousOperator) {
+    calculate();
+  }
+  previousOperator = operator;
+  previousOperand = parseFloat(display.value);
+  display.value += operator;
+}
+
+function calculate() {
+  let currentOperand = parseFloat(display.value.substring(display.value.lastIndexOf(previousOperator) + 1));
+  let result;
+
+  switch (previousOperator) {
+    case '+':
+      result = previousOperand + currentOperand;
+      break;
+    case '-':
+      result = previousOperand - currentOperand;
+      break;
+    case '*':
+      result = previousOperand * currentOperand;
+      break;
+    case '/':
+      if (currentOperand === 0) {
+        result = "Error";
+      } else {
+        result = previousOperand / currentOperand;
+      }
+      break;
+  }
+
+  display.value = result;
+  previousOperator = null;
+  previousOperand = null;
+}
+
+function clearDisplay() {
+  display.value = '';
+}
+
 
 // Mindfulness & Meditation Widget Script
 
