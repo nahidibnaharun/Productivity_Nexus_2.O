@@ -773,14 +773,14 @@ function updateAIIcon() {
         case 'perplexity':
             aiIcon.innerHTML = '<i class="fas fa-question-circle"></i>';
             aiIcon.innerHTML = '<img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/perplexity-ai-icon.png" alt="Perplexity">';
-            // Style the image
+        
             aiIcon.querySelector('img').style.width = '24px'; 
             aiIcon.querySelector('img').style.height = '24px';
             break;
         case 'claude':
             aiIcon.innerHTML = '<img src="https://claude.ai/images/claude_app_icon.png" alt="Claude">';
             submitPrompt.style.backgroundImage = 'linear-gradient(135deg, #ff9900, #fdcf00, #ff0000)';
-             // Style the image
+          
              aiIcon.querySelector('img').style.width = '24px'; 
              aiIcon.querySelector('img').style.height = '24px';
             break;
@@ -790,10 +790,8 @@ function updateAIIcon() {
     }
 }
 
-// Call the function to set the initial icon
 updateAIIcon();
 
-// Event listener for the select element
 aiPlatformSelect.addEventListener('change', updateAIIcon);
 
 submitPrompt.addEventListener('click', () => {
@@ -819,7 +817,7 @@ submitPrompt.addEventListener('click', () => {
             url = 'https://claude.ai/search?q=' + encodeURIComponent(prompt); 
             break;
         default: 
-            url = 'https://www.google.com/search?q=' + encodeURIComponent(prompt); // Default to Google Search
+            url = 'https://www.google.com/search?q=' + encodeURIComponent(prompt); 
    }
 
     window.open(url, '_blank');
@@ -847,7 +845,7 @@ function checkTyping() {
 }
 
 function calculateResults() {
-    const timeDiff = (endTime - startTime) / 1000; // Time in seconds
+    const timeDiff = (endTime - startTime) / 1000;
     const words = typingTestText.split(' ').length;
     const wordsPerMinute = Math.round((words / timeDiff) * 60);
     const accuracy = ((typingTestText === document.getElementById('userInput').value) ? 100 : 0).toFixed(2);
@@ -855,7 +853,6 @@ function calculateResults() {
     document.getElementById('wordsPerMinute').textContent = `Words per Minute: ${wordsPerMinute}`;
     document.getElementById('accuracy').textContent = `Accuracy: ${accuracy}%`;
 
-    // Reset for next test
     startTime = null;
     endTime = null;
     document.getElementById('userInput').value = '';
@@ -866,7 +863,7 @@ function calculateResults() {
 
 // Fetch 5-Day Forecast Data
 function fetchFiveDayForecast() {
-  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; // Replace with your OpenWeatherMap API key
+  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; 
   const city = document.getElementById('citySelectAirForecast').value; 
   const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
 
@@ -874,7 +871,7 @@ function fetchFiveDayForecast() {
       .then(response => response.json())
       .then(data => {
           const forecastList = document.getElementById('forecastList');
-          forecastList.innerHTML = ''; // Clear previous forecast
+          forecastList.innerHTML = ''; 
 
           // Group forecasts by day
           for (let i = 0; i < data.list.length; i += 8) { 
@@ -898,21 +895,16 @@ function fetchFiveDayForecast() {
 
 // Initialize the 5-Day forecast
 window.onload = function() {
-  // ... your other initialization code ...
-
-  // Initialize the 5-day forecast widget
   fetchFiveDayForecast();
   document.getElementById('citySelectAirForecast').addEventListener('change', fetchFiveDayForecast);
 };
 
 
 
-// Fetch Air Pollution Data
 function fetchAirPollutionData() {
-  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; // Replace with your OpenWeatherMap API key
+  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; 
   const city = document.getElementById('citySelectAirQuality').value; 
 
-  // Get latitude and longitude using Geocoding API
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
       .then(response => response.json())
       .then(data => {
@@ -920,10 +912,8 @@ function fetchAirPollutionData() {
               const lat = data[0].lat;
               const lon = data[0].lon;
 
-              // Now fetch air pollution data using lat and lon
               fetchAirPollutionDataByCoords(lat, lon); 
           } else {
-              // Handle case where city is not found
               document.getElementById('aqiIndex').textContent = "City not found";
               document.getElementById('airQualityDescription').textContent = "";
               document.getElementById('pollutantList').innerHTML = ''; 
@@ -949,7 +939,6 @@ function fetchAirPollutionDataByCoords(lat, lon) {
               const aqi = data.list[0].main.aqi;
               aqiIndex.textContent = `AQI: ${aqi}`;
 
-              // Air quality descriptions (you can customize these)
               let airQualityDescriptionText = "";
               switch (aqi) {
                   case 1:
@@ -984,7 +973,6 @@ function fetchAirPollutionDataByCoords(lat, lon) {
                   pollutantList.appendChild(pollutantItem);
               }
           } else {
-              // Handle the case where data is not available
               aqiIndex.textContent = "Data Unavailable";
               airQualityDescription.textContent = "";
               pollutantList.innerHTML = ''; 
@@ -995,19 +983,14 @@ function fetchAirPollutionDataByCoords(lat, lon) {
 
 // Initialize the Air Pollution Widget
 window.onload = function() {
-  // ... your other initialization code ...
-
-  // Initialize the 5-day forecast widget
   fetchFiveDayForecast();
   document.getElementById('citySelectAirForecast').addEventListener('change', fetchFiveDayForecast);
 
-  // Initialize the Air Pollution Widget
   fetchAirPollutionData();
   document.getElementById('citySelectAirQuality').addEventListener('change', fetchAirPollutionData);
 };
 
 
-// ... (Your Other JavaScript Code) ... 
 
 // Currency Converter Widget 
 const fromCurrencySelect = document.getElementById('fromCurrencySelect');
@@ -1015,12 +998,12 @@ const toCurrencySelect = document.getElementById('toCurrencySelect');
 const amountInput = document.getElementById('amountInput');
 const conversionResult = document.getElementById('conversionResult');
 
-let latestRates = {}; // Store latest rates
+let latestRates = {}; 
 
-// Fetch Latest Exchange Rates
+// Fetch Latest Exchange Rates (with a CORS proxy)
 function fetchLatestRates() {
-  const apiKey = 'null'; // Replace with your actual API key
-  const apiUrl = `https://data.fixer.io/api/latest?access_key=${apiKey}`;
+  const apiKey = 'ba145ba106ad93c5bb9197747a808208'; 
+  const apiUrl = `https://data.fixer.io/api/latest?access_key=${apiKey}`; 
 
   fetch(apiUrl)
     .then(response => {
@@ -1031,10 +1014,10 @@ function fetchLatestRates() {
     })
     .then(data => {
       if (data.success) {
-        latestRates = data.rates; // Store the latest rates
+        latestRates = data.rates; 
         populateCurrencyDropdown(fromCurrencySelect, latestRates);
         populateCurrencyDropdown(toCurrencySelect, latestRates);
-        calculateConversion(); // Calculate initial conversion
+        calculateConversion(); 
       } else {
         console.error('Fixer API Error:', data.error);
         conversionResult.textContent = `Error: ${data.error.info}`;
@@ -1048,7 +1031,7 @@ function fetchLatestRates() {
 
 // Function to populate dropdowns
 function populateCurrencyDropdown(dropdown, rates) {
-  dropdown.innerHTML = ''; // Clear existing options
+  dropdown.innerHTML = ''; 
 
   for (const currencyCode in rates) {
     const option = document.createElement('option');
@@ -1075,15 +1058,26 @@ function calculateConversion() {
 
 // Event listeners for real-time conversion
 window.onload = function() {
-  fetchLatestRates(); // Fetch latest rates on page load
+  fetchLatestRates(); 
 
   fromCurrencySelect.addEventListener('change', calculateConversion);
   toCurrencySelect.addEventListener('change', calculateConversion);
-  amountInput.addEventListener('input', calculateConversion); // Trigger on input change
-  initMap();
+  amountInput.addEventListener('input', calculateConversion); 
 };
 
 // ... (Your Other JavaScript Code) ... 
+
+// Event listeners for real-time conversion
+window.onload = function() {
+  fetchLatestRates(); 
+
+  fromCurrencySelect.addEventListener('change', calculateConversion);
+  toCurrencySelect.addEventListener('change', calculateConversion);
+  amountInput.addEventListener('input', calculateConversion); 
+  initMap();
+};
+
+
 
 
 // Map Widget Logic 
@@ -1091,7 +1085,7 @@ let map;
 let marker;
 
 function initMap() {
-    map = L.map('map').setView([23.7104, 90.4125], 13); // Default location (Bangladesh) 
+    map = L.map('map').setView([23.7104, 90.4125], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
@@ -1111,5 +1105,3 @@ function initMap() {
 }
 
 
-
-// ... (Your Other JavaScript) ... 

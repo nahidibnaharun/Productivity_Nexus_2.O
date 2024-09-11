@@ -3,7 +3,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
   background-size: 400% 400%;
-  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  animation: gradientAnimation 30s ease infinite; 
 }
 
 @keyframes gradientAnimation {
@@ -27,7 +27,7 @@ body {
 .gradient-bg {
   background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
   background-size: 400% 400%;
-  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  animation: gradientAnimation 30s ease infinite; 
   color: white;
   padding: 20px 40px;
   border-radius: 10px 10px 0 0;
@@ -121,14 +121,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
-  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  animation: gradientAnimation 30s ease infinite;
   margin-bottom: 15px;
 }
 
 .widget:nth-child(8) textarea {
   /* Style the textarea for notes */
-  resize: vertical; /* Allow vertical resizing */
-  min-height: 100px; /* Set a minimum height for the textarea */
+  resize: vertical; 
+  min-height: 100px; 
 }
 
 .widget:nth-child(8) button.save-notes-button {
@@ -138,8 +138,8 @@ body {
     #1bffff,
     #9c27b0
   ); /* New gradient colors */
-  background-size: 200% 100%; /* Same as other animated buttons */
-  animation: buttonGradientAnimation 6s linear infinite; /* Same animation as other buttons */
+  background-size: 200% 100%;
+  animation: buttonGradientAnimation 6s linear infinite; 
 }
 /* --- Widget Titles --- */
 .widget h2 {
@@ -149,7 +149,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
-  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  animation: gradientAnimation 30s ease infinite;
   margin-bottom: 15px;
 }
 
@@ -162,7 +162,7 @@ li button,
 .logout-button {
   padding: 12px 24px; /* Slightly larger padding */
   border: none;
-  border-radius: 8px; /* Slightly more rounded corners */
+  border-radius: 8px; 
   color: white;
   cursor: pointer;
   font-weight: bold;

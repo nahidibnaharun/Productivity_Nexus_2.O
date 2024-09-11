@@ -48,11 +48,10 @@ body {
   }
   
   .widget {
-      padding: 30px; /* Increase padding */
-      margin-bottom: 30px; /* Increase margin */
+      padding: 30px;
+      margin-bottom: 30px; 
   }
   
-  /* Style the table for better readability */
   #usersTable {
     border-collapse: collapse;
     width: 100%;
@@ -72,15 +71,14 @@ body {
     font-weight: bold;
   }
   
-  /* Style the Create User button */
   .bg-blue-500 {
-    background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Green gradient */
+    background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); 
     background-size: 200% 100%;
     animation: buttonGradientAnimation 4s linear infinite; 
     transition: transform 0.3s ease, background-color 0.3s ease;
-    padding: 12px 24px; /* Slightly larger padding */
+    padding: 12px 24px; 
     border: none;
-    border-radius: 8px; /* Slightly more rounded corners */
+    border-radius: 8px;
     color: white;
     cursor: pointer;
     font-weight: bold;

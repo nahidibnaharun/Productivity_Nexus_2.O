@@ -40,7 +40,6 @@ body {
     transform: scale(1.02);
 }
 
-/* Gradient animation for h1, h2, and logo */
 .gradient-text {
     background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
     background-size: 300% 300%;
@@ -61,7 +60,6 @@ body {
     }
 }
 
-/* Input field styles */
 .input-group {
     position: relative;
     margin-bottom: 20px;
@@ -88,7 +86,6 @@ input {
     background-clip: padding-box;
 }
 
-/* Placeholder gradient animation */
 .input-animate::placeholder {
     color: transparent;
     background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
@@ -109,7 +106,6 @@ input {
     }
 }
 
-/* Professional focus animation for input fields */
 .input-animate:focus {
     border-color: #667eea;
     outline: none;
@@ -127,7 +123,6 @@ input {
     }
 }
 
-/* Button styles */
 button {
     background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
     background-size: 300% 300%;
@@ -143,7 +138,6 @@ button {
     animation: buttonGradientAnimation 15s ease infinite;
 }
 
-/* Button hover animation */
 .btn-animate:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -161,7 +155,6 @@ button {
     }
 }
 
-/* Original animation for the logo/sign (maintaining its effect) */
 .logo {
     font-size: 3em;
     animation: logoPulse 1.5s ease-in-out infinite;
@@ -189,18 +182,18 @@ button {
     color: #764ba2;
 }
 
-/* Tagline with gradient animation */
+
 .tagline {
     font-style: italic;
-    color: transparent; /* Set color to transparent */
+    color: transparent; 
     background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
-    -webkit-background-clip: text; /* Apply gradient to text */
+    -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite; 
     margin-bottom: 30px;
 }
-/* ... other styles for index.html ... */
+
 .tab-icon {
     width: 30px; 
     height: 30px;

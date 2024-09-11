@@ -1,4 +1,4 @@
-// Simulated user database (for demonstration purposes ONLY)
+
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 function showLogin() {
@@ -29,7 +29,7 @@ function login() {
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            // Successful login
+           
             if (xhr.responseText === "Login successful!") {
                 sessionStorage.setItem('logged_in', true); 
                 sessionStorage.setItem('username', username); 
@@ -38,7 +38,7 @@ function login() {
                 alert(xhr.responseText);
             }
         } else {
-            // Error handling
+           
             alert(xhr.responseText);
         }
     };
@@ -50,14 +50,14 @@ function adminLogin() {
     const adminUsername = document.getElementById('adminUsername').value;
     const adminPassword = document.getElementById('adminPassword').value;
 
-    // AJAX Request
+   
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "admin_login.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            // Successful admin login
+            
             if (xhr.responseText === "Admin login successful!") {
                 sessionStorage.setItem('admin_logged_in', true);
                 window.location.href = 'admin.html';
@@ -65,7 +65,6 @@ function adminLogin() {
                 alert(xhr.responseText);
             }
         } else {
-            // Error handling
             alert(xhr.responseText);
         }
     };
@@ -99,14 +98,13 @@ function register() {
         return;
     }
 
-    // AJAX Request to save data to the database
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "register.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            alert(xhr.responseText); // Display the response from the server
+            alert(xhr.responseText); 
             if (xhr.responseText === "Registration successful!") {
                 showLogin();
             } 
@@ -118,10 +116,8 @@ function register() {
     xhr.send("name=" + name + "&username=" + username + "&email=" + email + "&password=" + password);
 }
 
-// Initialize with login form shown
 showLogin();
 
-// Event listener for Enter key press
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         if (document.getElementById('loginForm').style.display === 'block') {
