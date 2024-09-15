@@ -49,7 +49,9 @@ Feel free to contact me at [nahidibnaharun@gmail.com] with any questions or feed
 ![image](https://github.com/user-attachments/assets/5cbedac1-520b-4739-9980-bf620862f37f)
 ![Screenshot_15-9-2024_203029_](https://github.com/user-attachments/assets/fd77d993-7250-458e-a307-1f658f68b780)
 ER DIAGRAM:
-![ER_DIAGEAM](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
+![Class_DIAGEAM](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
+![ER DIAGRAM]:![ER_DIAGRAM](https://github.com/user-attachments/assets/98b8a069-419f-4ac0-9833-ebd9ef4a0ddb)
+
 
 
 LIVE LINK:https://nahidibnaharun1.netlify.app/
