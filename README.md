@@ -48,6 +48,8 @@ Feel free to contact me at [nahidibnaharun@gmail.com] with any questions or feed
 
 ![image](https://github.com/user-attachments/assets/5cbedac1-520b-4739-9980-bf620862f37f)
 ![Screenshot_15-9-2024_203029_](https://github.com/user-attachments/assets/fd77d993-7250-458e-a307-1f658f68b780)
+ER DIAGRAM:
+![ER_DIAGEAM](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
 
 
 LIVE LINK:https://66e6e85c7537c4a5b60412bc--stellar-stroopwafel-fd8697.netlify.app/
