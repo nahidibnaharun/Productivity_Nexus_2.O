@@ -52,4 +52,4 @@ ER DIAGRAM:
 ![ER_DIAGEAM](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
 
 
-LIVE LINK:https://66e6e85c7537c4a5b60412bc--stellar-stroopwafel-fd8697.netlify.app/
+LIVE LINK:https://nahidibnaharun1.netlify.app/
