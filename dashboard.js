@@ -14,7 +14,7 @@ setInterval(updateClockAndDate, 1000);
 
 // Fetch Weather Data
 function fetchWeather() {
-  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; // Your API key
+  const apiKey = 'API_KEY'; // Your API key
   const city = document.getElementById('citySelect').value; // Get selected city
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
@@ -863,7 +863,7 @@ function calculateResults() {
 
 // Fetch 5-Day Forecast Data
 function fetchFiveDayForecast() {
-  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; 
+  const apiKey = 'API_KEY'; 
   const city = document.getElementById('citySelectAirForecast').value; 
   const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
 
@@ -902,7 +902,7 @@ window.onload = function() {
 
 
 function fetchAirPollutionData() {
-  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; 
+  const apiKey = 'API_KEY'; 
   const city = document.getElementById('citySelectAirQuality').value; 
 
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`)
@@ -924,7 +924,7 @@ function fetchAirPollutionData() {
 
 // Fetch Air Pollution Data by Coordinates
 function fetchAirPollutionDataByCoords(lat, lon) {
-  const apiKey = '40ca38b56ecc823aeaccf0e28b960c71'; 
+  const apiKey = 'API_KEY'; 
   const apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
   fetch(apiUrl)
