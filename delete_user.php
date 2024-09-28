@@ -1,5 +1,4 @@
 <?php
-// Include the database connection 
 include 'db_config.php'; 
 
 $userId = $_POST["userId"];
