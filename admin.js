@@ -1,4 +1,4 @@
-// Check if admin is logged in
+
 function checkAdminLogin() {
     if (sessionStorage.getItem('admin_logged_in') !== 'true') {
         alert("Please log in as admin first.");
@@ -6,9 +6,9 @@ function checkAdminLogin() {
     }
 }
 
-checkAdminLogin(); // Call this function when the admin page loads
+checkAdminLogin();
 
-// Function to display users in the table
+
 function displayUsers() {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "fetch_users.php", true); 
@@ -16,7 +16,7 @@ function displayUsers() {
         if (xhr.status >= 200 && xhr.status < 400) {
             const users = JSON.parse(xhr.responseText);
             const usersTable = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
-            usersTable.innerHTML = ''; // Clear existing data
+            usersTable.innerHTML = ''; 
 
             for (let i = 0; i < users.length; i++) {
                 const user = users[i];
@@ -42,7 +42,6 @@ function displayUsers() {
     xhr.send();
 }
 
-// Function to delete a user
 function deleteUser(userId) {
     if (confirm("Are you sure you want to delete this user?")) {
         const xhr = new XMLHttpRequest();
@@ -52,7 +51,7 @@ function deleteUser(userId) {
         xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 400) {
                 alert(xhr.responseText);
-                displayUsers(); // Update the user list
+                displayUsers(); 
             } else {
                 console.error('Request failed.  Returned status of ' + xhr.status);
             }
@@ -61,7 +60,6 @@ function deleteUser(userId) {
     }
 }
 
-// Function to create a new user
 function createUser() {
     const name = prompt("Enter the user's name:");
     const username = prompt("Enter the user's username:");
@@ -76,7 +74,7 @@ function createUser() {
         xhr.onload = function() {
             if (xhr.status >= 200 && xhr.status < 400) {
                 alert(xhr.responseText);
-                displayUsers(); // Update the user list
+                displayUsers(); 
             } else {
                 console.error('Request failed.  Returned status of ' + xhr.status);
             }
@@ -85,12 +83,9 @@ function createUser() {
     }
 }
 
-// Function to log out the admin
 function logout() {
-    // Clear the admin_logged_in session storage variable
     sessionStorage.removeItem('admin_logged_in');
     window.location.href = 'index.html';
 }
 
-// Display users when the page loads
 displayUsers();
