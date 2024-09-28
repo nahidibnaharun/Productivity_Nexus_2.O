@@ -1,4 +1,4 @@
-// Clock and Date
+
 function updateClockAndDate() {
     const now = new Date();
     document.getElementById('clock').textContent = now.toLocaleTimeString();
@@ -12,10 +12,9 @@ function updateClockAndDate() {
 setInterval(updateClockAndDate, 1000);
 
 
-// Fetch Weather Data
 function fetchWeather() {
-  const apiKey = 'API_KEY'; // Your API key
-  const city = document.getElementById('citySelect').value; // Get selected city
+  const apiKey = 'API_KEY'; 
+  const city = document.getElementById('citySelect').value; 
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
   fetch(apiUrl)
@@ -28,16 +27,15 @@ function fetchWeather() {
       .catch(error => console.error('Error fetching weather data:', error));
 }
 
-// Initialize
+
 window.onload = function() {
   updateClockAndDate();
   updateProductivityScore();
   const savedNotes = localStorage.getItem('quickNotes');
 
-  // Add event listener to citySelect
   document.getElementById('citySelect').addEventListener('change', fetchWeather);
 
-  // Fetch weather for the default city when the page loads
+
   fetchWeather(); 
 
   document.getElementById('newTask').addEventListener('keyup', function(event) {
@@ -51,12 +49,11 @@ window.onload = function() {
       }
   });
 
-  initCalculator(); // Initialize the calculator widget
+  initCalculator();
 };
 
 
 
-// Motivational Quotes
 const quotes = [
     "The secret of getting ahead is getting started. - Mark Twain",
     "It always seems impossible until it's done. - Nelson Mandela",
@@ -69,9 +66,8 @@ function setRandomQuote() {
     quoteElement.textContent = quotes[Math.floor(Math.random() * quotes.length)];
 }
 setRandomQuote();
-setInterval(setRandomQuote, 3600000); // Update every 6 hours
+setInterval(setRandomQuote, 3600000); 
 
-// Reminders (Updated)
 function addReminder() {
   const reminderInput = document.getElementById('newReminder');
   const reminderTimeInput = document.getElementById('reminderTime');
@@ -99,7 +95,6 @@ function addReminder() {
 }
 
 
-// Tasks (Updated)
 function addTask() {
   const taskInput = document.getElementById('newTask');
   const taskTypeSelect = document.getElementById('taskType');
@@ -129,7 +124,6 @@ function addTask() {
       updateProductivityScore();
   }
 }
-// Water Intake Tracker
 let waterIntake = 0;
 function addWater() {
     if (waterIntake < 8) {
@@ -143,7 +137,7 @@ function updateWaterIntake() {
     document.getElementById('waterProgress').style.width = `${(waterIntake / 8) * 100}%`;
 }
 
-// Focus Timer
+
 let focusTimer;
 let focusTimeRemaining = 1500;
 function startFocusTimer() {
@@ -168,14 +162,14 @@ function updateFocusTimer() {
     document.getElementById('focusTimer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-// Logout
+
 function logout() {
     window.location.href = "index.html";
 }
 
-// Productivity Score (Corrected)
+
 function updateProductivityScore() {
-    const tasks = document.querySelectorAll('#taskList input[type="checkbox"]'); // Select all checkboxes
+    const tasks = document.querySelectorAll('#taskList input[type="checkbox"]'); 
     let totalScore = 0;
     let completedTasks = 0;
 
@@ -183,23 +177,23 @@ function updateProductivityScore() {
         const importance = parseInt(task.dataset.importance);
         totalScore += importance;
 
-        // Check if the task is checked *before* adding to completedTasks
+        
         if (task.checked) {
             completedTasks += importance;
         }
     });
 
-    const reminders = document.querySelectorAll('#reminderList input[type="checkbox"]'); // Select all reminder checkboxes
+    const reminders = document.querySelectorAll('#reminderList input[type="checkbox"]'); 
     reminders.forEach(reminder => {
         totalScore += 1;
 
-        // Check if the reminder is checked *before* adding to completedTasks
+        
         if (reminder.checked) {
             completedTasks += 1;
         }
     });
 
-    // Calculate productivity score (taking task importance into account)
+    
     let productivityScore = 0;
     if (totalScore > 0) {
         productivityScore = Math.round((completedTasks / totalScore) * 100);
@@ -229,18 +223,18 @@ window.onload = function() {
         }
     });
 
-    initCalculator(); // Initialize the calculator widget
+    initCalculator(); 
 };
 
 
-// Timer updates
+
 function updateTimer() {
     const timerMinutes = document.getElementById('timerMinutes').value;
     focusTimeRemaining = timerMinutes * 60;
     updateFocusTimer();
 }
 
-// Upcoming Events
+
 function addEvent() {
     const eventInput = document.getElementById('newEvent');
     const eventDateInput = document.getElementById('eventDate');
@@ -261,8 +255,8 @@ function deleteEvent(button) {
     li.remove();
 }
 
-// Book Tracker
-let books = []; // Array to store book data
+
+let books = []; 
 
 function addBook() {
     const bookNameInput = document.getElementById('newBookName');
@@ -285,9 +279,9 @@ function addBook() {
 
 function updateBookList() {
     const bookList = document.getElementById('bookList');
-    bookList.innerHTML = ''; // Clear the list
+    bookList.innerHTML = ''; 
 
-    // Sort books by date/time (ascending)
+
     books.sort((a, b) => a.dateTime - b.dateTime);
 
     books.forEach((book, index) => {
@@ -298,7 +292,6 @@ function updateBookList() {
 }
 
 
-// Calculator Widget Logic
 let display = document.getElementById('display');
 let previousOperator = null;
 let previousOperand = null;
@@ -349,7 +342,6 @@ function clearDisplay() {
 }
 
 
-// Mindfulness & Meditation Widget Script
 
 let breathingInterval;
 let isBreathing = false;
@@ -362,7 +354,7 @@ function startBreathingExercise() {
         isBreathing = true;
         document.getElementById('startBreathing').textContent = 'Stop Exercise';
         breathingCycle();
-        breathingInterval = setInterval(breathingCycle, 12000); // 12 seconds per full cycle
+        breathingInterval = setInterval(breathingCycle, 12000); 
     }
 }
 
@@ -370,26 +362,26 @@ function breathingCycle() {
     const breathingText = document.getElementById('breathingText');
     const breathingCircle = document.getElementById('breathingCircle');
 
-    // Breathe In
+    
     breathingText.textContent = 'Breathe In';
     breathingCircle.classList.remove('exhale', 'hold');
     breathingCircle.classList.add('inhale');
 
-    // Hold
+    
     setTimeout(() => {
         breathingText.textContent = 'Hold';
         breathingCircle.classList.remove('inhale', 'exhale');
         breathingCircle.classList.add('hold');
     }, 4000);
 
-    // Breathe Out
+    
     setTimeout(() => {
         breathingText.textContent = 'Breathe Out';
         breathingCircle.classList.remove('inhale', 'hold');
         breathingCircle.classList.add('exhale');
     }, 8000);
 
-    // Increment cycle counter
+    
     setTimeout(() => {
         cycles++;
         document.getElementById('cycleCounter').textContent = `Cycles: ${cycles}`;
@@ -409,7 +401,7 @@ function resetBreathingExercise() {
     cycles = 0;
     document.getElementById('cycleCounter').textContent = 'Cycles: 0';
 }
-// games 
+
  const gameContainer = document.getElementById('gameContainer');
     const scoreElement = document.getElementById('score');
     const movesElement = document.getElementById('moves');
@@ -425,7 +417,7 @@ function resetBreathingExercise() {
 
     const symbols = ['🍎', '🍌', '🍇', '🍓', '🍉', '🍍', '🍒', '🍑', '🍊', '🍋', '🥭', '🥥', '🥝', '🥑', '🍆', '🥕']; 
 
-    // Function to start the game based on selected level
+
     startButton.addEventListener('click', () => {
         const selectedLevel = levelSelect.value;
         switch (selectedLevel) {
@@ -442,7 +434,7 @@ function resetBreathingExercise() {
         startGame(); 
     });
 
-    // Function to create a card element
+
     function createCard(symbol) {
         const card = document.createElement('div');
         card.classList.add('card');
@@ -453,7 +445,7 @@ function resetBreathingExercise() {
         return card;
     }
 
-    // Function to shuffle the array (Fisher-Yates Shuffle)
+
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -462,7 +454,7 @@ function resetBreathingExercise() {
         return array;
     }
 
-    // Function to start the game
+
     function startGame() {
         score = 0;
         moves = 0;
@@ -471,17 +463,17 @@ function resetBreathingExercise() {
         scoreElement.textContent = score;
         movesElement.textContent = moves;
 
-        gameBoard = shuffle(symbols.slice(0, numCards)).concat(shuffle(symbols.slice(0, numCards))); // Create pairs
-        gameContainer.innerHTML = ''; // Clear previous game
+        gameBoard = shuffle(symbols.slice(0, numCards)).concat(shuffle(symbols.slice(0, numCards))); 
+        gameContainer.innerHTML = ''; 
 
-        // Create and add cards to the game board
+        
         gameBoard.forEach(symbol => {
             const card = createCard(symbol);
             gameContainer.appendChild(card);
         });
     }
 
-    // Function to flip a card
+
     function flipCard() {
         if (flippedCards.length < 2 && !matchedCards.includes(this) && !flippedCards.includes(this)) {
             this.classList.add('flipped');
@@ -491,7 +483,7 @@ function resetBreathingExercise() {
                 moves++;
                 movesElement.textContent = moves;
 
-                // Check if the cards match
+                
                 const card1 = flippedCards[0].querySelector('.card-content').textContent;
                 const card2 = flippedCards[1].querySelector('.card-content').textContent;
 
@@ -505,36 +497,35 @@ function resetBreathingExercise() {
                         score += 10;
                         scoreElement.textContent = score;
 
-                        // Check if the game is over
+                        
                         if (matchedCards.length === gameBoard.length) {
                             setTimeout(() => {
                                 alert(`Congratulations! You won with ${moves} moves!`);
-                                startGame(); // Start a new game
+                                startGame(); 
                             }, 500);
                         }
-                    }, 1000); // Wait for 1 second before checking for match
+                    }, 1000); 
                 } else {
                     setTimeout(() => {
                         flippedCards[0].classList.remove('flipped');
                         flippedCards[1].classList.remove('flipped');
                         flippedCards = [];
-                    }, 1000); // Wait for 1 second before flipping back
+                    }, 1000); 
                 }
             }
         }
     }
 
-    // Initially hide the game board 
-    gameContainer.style.display = "none"; // Hide the board at the start
 
-    // Start the game when the "Start Game" button is clicked
+    gameContainer.style.display = "none"; 
+
+
     startButton.addEventListener('click', () => {
-        gameContainer.style.display = "grid"; // Show the game board
+        gameContainer.style.display = "grid"; 
         startGame();
     });
 
-// Sudoku grid
-// Sudoku Code with Lives, High Score Saving, and Improved Styling
+
 const board = document.getElementById('sudoku-board');
 const newGameBtn = document.getElementById('new-game');
 const solveBtn = document.getElementById('solve');
@@ -663,7 +654,7 @@ function hint() {
     puzzle[randomCell.row][randomCell.col] = solution[randomCell.row][randomCell.col];
     renderBoard();
   }
-  updateHighScore(-5); // Deduct 5 points for each hint
+  updateHighScore(-5); 
 }
 
 function checkSolved() {
@@ -692,7 +683,7 @@ function reduceLife() {
   if (lives === 0) {
     alert('Game Over! You ran out of lives.');
     resetScore();
-    solve(); // Show the solution
+    solve(); 
   }
 }
 
@@ -739,21 +730,21 @@ hintBtn.addEventListener('click', hint);
 checkSolvedBtn.addEventListener('click', checkSolved);
 document.addEventListener('keydown', handleKeyPress);
 
-// Initialize the game and load the saved high score
+
 newGame();
 highScoreElement.textContent = `High Score: ${highScore}`;
 
-// Add these to your window.onload function
+
 document.getElementById('startBreathing').addEventListener('click', startBreathingExercise);
 document.getElementById('resetBreathing').addEventListener('click', resetBreathingExercise);
 
-// AI Widget
+
 const aiPlatformSelect = document.getElementById('aiPlatformSelect');
 const aiPrompt = document.getElementById('aiPrompt');
 const submitPrompt = document.getElementById('submitPrompt');
 const aiIcon = document.getElementById('aiIcon');
 
-// Function to update the AI icon based on the selected platform
+
 function updateAIIcon() {
     const selectedPlatform = aiPlatformSelect.value;
 
@@ -825,7 +816,7 @@ submitPrompt.addEventListener('click', () => {
 });
 
 
-// Typing Test Widget
+
 
 let startTime;
 let endTime;
@@ -861,7 +852,7 @@ function calculateResults() {
 
 
 
-// Fetch 5-Day Forecast Data
+
 function fetchFiveDayForecast() {
   const apiKey = 'API_KEY'; 
   const city = document.getElementById('citySelectAirForecast').value; 
@@ -873,7 +864,7 @@ function fetchFiveDayForecast() {
           const forecastList = document.getElementById('forecastList');
           forecastList.innerHTML = ''; 
 
-          // Group forecasts by day
+          
           for (let i = 0; i < data.list.length; i += 8) { 
               const forecast = data.list[i];
               const day = new Date(forecast.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' });
@@ -893,7 +884,7 @@ function fetchFiveDayForecast() {
       .catch(error => console.error('Error fetching weather data:', error));
 }
 
-// Initialize the 5-Day forecast
+
 window.onload = function() {
   fetchFiveDayForecast();
   document.getElementById('citySelectAirForecast').addEventListener('change', fetchFiveDayForecast);
@@ -922,7 +913,7 @@ function fetchAirPollutionData() {
       .catch(error => console.error('Error fetching geocoding data:', error));
 }
 
-// Fetch Air Pollution Data by Coordinates
+
 function fetchAirPollutionDataByCoords(lat, lon) {
   const apiKey = 'API_KEY'; 
   const apiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -961,7 +952,7 @@ function fetchAirPollutionDataByCoords(lat, lon) {
               }
               airQualityDescription.textContent = airQualityDescriptionText;
 
-              // Display pollutants
+              
               pollutantList.innerHTML = ''; 
               for (const pollutant in data.list[0].components) {
                   const pollutantItem = document.createElement('li');
@@ -981,7 +972,7 @@ function fetchAirPollutionDataByCoords(lat, lon) {
       .catch(error => console.error('Error fetching air pollution data:', error));
 }
 
-// Initialize the Air Pollution Widget
+
 window.onload = function() {
   fetchFiveDayForecast();
   document.getElementById('citySelectAirForecast').addEventListener('change', fetchFiveDayForecast);
@@ -992,7 +983,6 @@ window.onload = function() {
 
 
 
-// Currency Converter Widget 
 const fromCurrencySelect = document.getElementById('fromCurrencySelect');
 const toCurrencySelect = document.getElementById('toCurrencySelect');
 const amountInput = document.getElementById('amountInput');
@@ -1000,7 +990,7 @@ const conversionResult = document.getElementById('conversionResult');
 
 let latestRates = {}; 
 
-// Fetch Latest Exchange Rates (with a CORS proxy)
+
 function fetchLatestRates() {
   const apiKey = 'null'; 
   const apiUrl = `https://data.fixer.io/api/latest?access_key=${apiKey}`; 
@@ -1029,7 +1019,7 @@ function fetchLatestRates() {
     });
 }
 
-// Function to populate dropdowns
+
 function populateCurrencyDropdown(dropdown, rates) {
   dropdown.innerHTML = ''; 
 
@@ -1041,7 +1031,7 @@ function populateCurrencyDropdown(dropdown, rates) {
   }
 }
 
-// Calculate the conversion based on latest rates
+
 function calculateConversion() {
   const fromCurrency = fromCurrencySelect.value;
   const toCurrency = toCurrencySelect.value;
@@ -1056,7 +1046,7 @@ function calculateConversion() {
   }
 }
 
-// Event listeners for real-time conversion
+
 window.onload = function() {
   fetchLatestRates(); 
 
@@ -1065,9 +1055,7 @@ window.onload = function() {
   amountInput.addEventListener('input', calculateConversion); 
 };
 
-// ... (Your Other JavaScript Code) ... 
 
-// Event listeners for real-time conversion
 window.onload = function() {
   fetchLatestRates(); 
 
@@ -1080,7 +1068,6 @@ window.onload = function() {
 
 
 
-// Map Widget Logic 
 let map;
 let marker;
 
@@ -1098,7 +1085,7 @@ function initMap() {
 
         marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
 
-        // Update the displayed coordinates
+        
         document.getElementById('latitude').textContent = e.latlng.lat.toFixed(4); 
         document.getElementById('longitude').textContent = e.latlng.lng.toFixed(4); 
     });
