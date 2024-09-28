@@ -1,4 +1,4 @@
-/* --- General Styles & Background Animation --- */
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
@@ -18,12 +18,10 @@ body {
   }
 }
 
-/* --- Main Container (No Background) --- */
 .container {
   background: none;
 }
 
-/* --- Gradient Header --- */
 .gradient-bg {
   background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
   background-size: 400% 400%;
@@ -45,7 +43,6 @@ body {
   font-weight: bold;
 }
 
-/* --- Widget Styles --- */
 .widget {
   background-color: white;
   border-radius: 10px;
@@ -60,7 +57,6 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/*Breathing Circle*/
 .breathing-circle {
   width: 100px;
   height: 100px;
@@ -98,9 +94,7 @@ body {
 #breathingExercise button:hover {
   transform: scale(1.05);
 }
-/* Notes Widget Styles */
 .widget:nth-child(8) {
-  /* Adjust the nth-child selector if your Notes widget is in a different position */
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -126,7 +120,6 @@ body {
 }
 
 .widget:nth-child(8) textarea {
-  /* Style the textarea for notes */
   resize: vertical; 
   min-height: 100px; 
 }
@@ -137,11 +130,10 @@ body {
     #2e3192,
     #1bffff,
     #9c27b0
-  ); /* New gradient colors */
+  );
   background-size: 200% 100%;
   animation: buttonGradientAnimation 6s linear infinite; 
 }
-/* --- Widget Titles --- */
 .widget h2 {
   font-size: 1.8em;
   color: transparent;
@@ -153,14 +145,13 @@ body {
   margin-bottom: 15px;
 }
 
-/* --- All Buttons (Common Styles) --- */
 .timer-controls button,
 .widget button,
 .flex button,
 .social-links a,
 li button,
 .logout-button {
-  padding: 12px 24px; /* Slightly larger padding */
+  padding: 12px 24px;
   border: none;
   border-radius: 8px; 
   color: white;
@@ -168,7 +159,7 @@ li button,
   font-weight: bold;
   margin-bottom: 10px;
   background-size: 200% 100%;
-  animation: buttonGradientAnimation 6s linear infinite; /* Faster animation */
+  animation: buttonGradientAnimation 6s linear infinite;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -193,7 +184,6 @@ li button:hover,
   }
 }
 
-/* --- Specific Button Gradients (3-color) --- */
 .timer-controls button {
   background-image: linear-gradient(135deg, #1f23f0, #5413ec, #14f7eb);
 }
@@ -222,19 +212,17 @@ li button:hover,
   background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607);
 }
 
-/* --- Widget:nth-child(8) Button (Save Notes button) --- */
 .widget:nth-child(8) button.save-notes-button {
   background-image: linear-gradient(
     135deg,
     #2e3192,
     #1bffff,
     #9c27b0
-  ); /* New gradient colors */
-  background-size: 200% 100%; /* Same as other animated buttons */
-  animation: buttonGradientAnimation 6s linear infinite; /* Same animation as other buttons */
+  ); 
+  background-size: 200% 100%; 
+  animation: buttonGradientAnimation 6s linear infinite; 
 }
 
-/* --- Social Links with Animated Gradients --- */
 .social-links a {
   display: block;
   color: white;
@@ -263,7 +251,7 @@ li button:hover,
   background-image: linear-gradient(135deg, #2600ff, #ff009d, #ff00bf);
 }
 
-/* --- Logout Button --- */
+
 .logout-button {
   position: absolute;
   top: 10px;
@@ -271,7 +259,6 @@ li button:hover,
   background-image: linear-gradient(135deg, #0004ff, #4c00ff, #feb47b, #ff4e22);
 }
 
-/* --- Progress Bars with Background Animation --- */
 .progress {
   height: 10px;
   border-radius: 9999px;
@@ -279,7 +266,7 @@ li button:hover,
   position: relative;
   background: linear-gradient(135deg, #667eea, #764ba2, #ff7e5f, #feb47b);
   background-size: 400% 400%;
-  animation: progressBackgroundAnimation 30s ease infinite; /* Animation slowed down */
+  animation: progressBackgroundAnimation 30s ease infinite;
 }
 
 .progress > div {
@@ -311,20 +298,16 @@ li button:hover,
   }
 }
 
-/* --- Align Set Timer button --- */
 .flex.justify-center button {
   margin-left: 10px;
 }
 
-/* --- Original Delete Button Styles (from Tailwind CSS) --- */
 li .delete-button,
 .flex .text-red-500 {
-  /* Use default Tailwind styles for delete buttons */
 }
 
 
 
-/* Calculator Widget Styles */
 #calculator {
   background-color: white;
   border-radius: 10px;
@@ -332,7 +315,7 @@ li .delete-button,
   transition: all 0.3s ease;
   padding: 20px;
   margin-bottom: 20px;
-  text-align: center; /* Center align the content */
+  text-align: center; 
 }
 
 #calculator:hover {
@@ -347,15 +330,15 @@ li .delete-button,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
-  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  animation: gradientAnimation 30s ease infinite; 
   margin-bottom: 15px;
 }
 
 #display {
   font-size: 2em;
-  background-color: white; /* White background for the input */
-  color: black; /* Set text color to black */
-  text-align: right; /* Align the text to the right */
+  background-color: white; 
+  color: black;
+  text-align: right;
   padding: 10px;
   border: 1px solid #ccc;
   width: 90%;
@@ -363,30 +346,27 @@ li .delete-button,
   border-radius: 5px;
 }
 
-/* Cool Calculator Button Styles (Large and Rectangular) */
 .calc-button {
-  padding: 16px 36px; /* Adjusted padding for rectangle shape */
+  padding: 16px 36px;
   border: none;
-  border-radius: 10px; /* More rounded corners */
+  border-radius: 10px; 
   color: white;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.4em; /* Larger font size */
+  font-size: 1.4em;
   background-size: 200% 100%;
   animation: buttonGradientAnimation 6s linear infinite;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  width: calc(100% / 2 - 22px); /* Adjust for 2 columns */ /*  Changed width  for  2  columns */
-  display: flex; /* Make the button a flex container */
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
+  width: calc(100% / 2 - 22px); 
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
 }
 
 .calc-button:hover {
-  transform: scale(1.1); /* Bigger on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger hover shadow */
-}
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
 
-/* Specific Colors for Calculator Buttons */
 .calc-button:nth-child(1),
 .calc-button:nth-child(2),
 .calc-button:nth-child(3),
@@ -398,22 +378,19 @@ li .delete-button,
 .calc-button:nth-child(11),
 .calc-button:nth-child(13),
 .calc-button:nth-child(14) {
-  background-image: linear-gradient(135deg, #004dff, #00ff9d, #00ff9d); /* Number button gradient (Blue-Green) */
+  background-image: linear-gradient(135deg, #004dff, #00ff9d, #00ff9d);
 }
 
 .calc-button:nth-child(4),
 .calc-button:nth-child(8),
 .calc-button:nth-child(12),
 .calc-button:nth-child(16),
-.calc-button:nth-child(17) { /* Clear button */
-  background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607); /* Operator button gradient (Red-Orange) */
-}
-
+.calc-button:nth-child(17) { 
+  background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607); 
 .calc-button:nth-child(15) {
-  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Equal button gradient (Green) */
+  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); 
 }
 
-/* --- Animations --- */
 @keyframes buttonGradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -439,7 +416,6 @@ li .delete-button,
 }
 
 
-/* Book Tracker Widget Styles */
 .book-tracker {
   background-color: white;
   border-radius: 10px;
@@ -461,7 +437,7 @@ li .delete-button,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
-  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  animation: gradientAnimation 30s ease infinite; 
   margin-bottom: 15px;
 }
 
@@ -495,7 +471,7 @@ li .delete-button,
     #009245,
     #fcee21,
     #03f303
-  ); /* Book tracker button gradient */
+  ); 
   background-size: 200% 100%;
   animation: buttonGradientAnimation 6s linear infinite;
   transition: transform 0.3s ease, background-color 0.3s ease;
@@ -505,7 +481,6 @@ li .delete-button,
   transform: scale(1.05);
 }
 
-/* Animation for the gradient */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -518,7 +493,6 @@ li .delete-button,
   }
 }
 
-/* Animation for the button gradient */
 @keyframes buttonGradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -530,20 +504,18 @@ li .delete-button,
     background-position: 0% 50%;
   }
 }
-/* ... (other styles) ... */
 
-/* Breathing Circle */
 .breathing-container {
   width: 150px;
   height: 150px;
-  position: relative; /* Set the parent to relative */
+  position: relative; 
 }
 
 .breathing-circle {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  position: absolute; /* Keep circle absolute */
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -578,7 +550,6 @@ li .delete-button,
   transform: scale(1.05);
 }
 
-/* Animation for the breathing circle gradient */
 @keyframes breathingCircleGradient {
   0% {
     background-position: 0% 50%;
@@ -591,9 +562,7 @@ li .delete-button,
   }
 }
 
-/* ... (other styles) ... */
 
-/* Notes Widget Styles */
 #notesWidget {
   background-color: white;
   border-radius: 10px;
@@ -615,14 +584,14 @@ li .delete-button,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
-  animation: gradientAnimation 30s ease infinite; /* Slower animation */
+  animation: gradientAnimation 30s ease infinite; 
   margin-bottom: 15px;
 }
 
 #notesWidget textarea {
-  /* Style the textarea for notes */
-  resize: vertical; /* Allow vertical resizing */
-  min-height: 100px; /* Set a minimum height for the textarea */
+
+  resize: vertical; 
+  min-height: 100px; 
 }
 
 #notesWidget button.save-notes-button {
@@ -637,9 +606,9 @@ li .delete-button,
     #2e3192,
     #1bffff,
     #9c27b0
-  ); /* New gradient colors */
-  background-size: 200% 100%; /* Same as other animated buttons */
-  animation: buttonGradientAnimation 6s linear infinite; /* Same animation as other buttons */
+  );
+  background-size: 200% 100%; 
+  animation: buttonGradientAnimation 6s linear infinite; 
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -647,7 +616,6 @@ li .delete-button,
   transform: scale(1.05);
 }
 
-/* Animation for the gradient */
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -660,7 +628,6 @@ li .delete-button,
   }
 }
 
-/* Animation for the button gradient */
 @keyframes buttonGradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -672,10 +639,10 @@ li .delete-button,
     background-position: 0% 50%;
   }
 }
-/* box game*/
+
 .game-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-columns: repeat(4, 1fr); 
   grid-gap: 10px;
   width: 300px;
   margin: 20px auto;
@@ -691,7 +658,7 @@ li .delete-button,
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s;
-  position: relative; /* For the back face */
+  position: relative;
 }
 
 .card.flipped {
@@ -700,14 +667,14 @@ li .delete-button,
 
 .card.matched {
   background-image: linear-gradient(135deg, #f800e3, #23ff1b, #d900ff);
-  pointer-events: none; /* Disable clicks on matched cards */
+  pointer-events: none; 
 }
 .card-content {
   font-size: 2em;
   color: #333;
-  transform: rotateY(180deg); /* Initially hidden */
+  transform: rotateY(180deg); 
   transition: transform 0.2s;
-  position: absolute; /* For the front face */
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
@@ -715,11 +682,11 @@ li .delete-button,
   display: flex;
   justify-content: center;
   align-items: center;
-  backface-visibility: hidden; /* Hide the back face when flipped */
+  backface-visibility: hidden; 
 }
 
 .card.flipped .card-content {
-  transform: rotateY(0deg); /* Reveal when flipped */
+  transform: rotateY(0deg); 
 }
 
 .score-container {
@@ -753,16 +720,14 @@ li .delete-button,
   cursor: pointer;
 }
 
-/* ... (your existing CSS) ... */
 
-/* --- Competitive Programming Links --- */
 .social-links .codeforces {
   background-image: linear-gradient(
     135deg,
     #fbff00,
     #0011ff,
     #ff0000
-  ); /* Blue-ish theme */
+  ); 
 }
 
 .social-links .atcoder {
@@ -771,7 +736,7 @@ li .delete-button,
     #000000,
     #99878d,
     #ffffff
-  ); /* Pinkish theme */
+  ); 
 }
 
 .social-links .leetcode {
@@ -780,7 +745,7 @@ li .delete-button,
     #000000,
     #754eb3,
     #929292
-  ); /* Blue theme */
+  ); 
 }
 
 .social-links .projecteuler {
@@ -789,7 +754,7 @@ li .delete-button,
     #ff8800,
     #5e5e5e,
     #000000
-  ); /* Dark gray theme */
+  );
 }
 
 .social-links .codechef {
@@ -798,7 +763,7 @@ li .delete-button,
     #ffffff,
     #964b00,
     #000000
-  ); /* Orange-brown theme */
+  ); 
 }
 
 .social-links .hackerrank {
@@ -807,7 +772,7 @@ li .delete-button,
     #00ff22,
     #f3f3f3,
     #000000
-  ); /* Red-orange theme */
+  );
 }
 
 .social-links .topcoder {
@@ -817,9 +782,9 @@ li .delete-button,
     #01ff01,
     #ffef13,
     #ff0000
-  ); /* Green theme */
+  );
 }
-/* Sudoku Styles */
+
 #sudoku-board {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
@@ -830,7 +795,7 @@ li .delete-button,
   border-radius: 10px;
   background-color: #fafafa;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 2px solid #333; /* Overall border */
+  border: 2px solid #333;
 }
 
 #sudoku-board .cell {
@@ -871,7 +836,6 @@ li .delete-button,
   border-bottom: 2px solid #333;
 }
 
-/* High Score and Lives Stylish */
 #high-score, #lives {
   color: #ff5722;
   font-size: 1.8em;
@@ -894,7 +858,6 @@ li .delete-button,
   }
 }
 
-/* Button Styles with Gradient Animations */
 #new-game, 
 #solve, 
 #hint, 
@@ -902,9 +865,9 @@ li .delete-button,
   background-size: 200% 100%;
   animation: buttonGradientAnimation 4s linear infinite;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  padding: 12px 24px; /* Slightly larger padding */
+  padding: 12px 24px; 
   border: none;
-  border-radius: 8px; /* Slightly more rounded corners */
+  border-radius: 8px; 
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -923,21 +886,20 @@ li .delete-button,
   }
 }
 
-/* Specific Gradients for Sudoku Buttons */
 #new-game {
-  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303); /* Green */
+  background-image: linear-gradient(135deg, #009245, #fcee21, #03f303);
 }
 
 #solve {
-  background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607); /* Orange */
+  background-image: linear-gradient(135deg, #ff512f, #dd2476, #ffe607);
 }
 
 #hint {
-  background-image: linear-gradient(135deg, #f86464, #ff1414, #0073ff); /* Red */
+  background-image: linear-gradient(135deg, #f86464, #ff1414, #0073ff);
 }
 
 #check-solved {
-  background-image: linear-gradient(135deg, #5900ff, #05ffd5, #b13ddf); /* Blue */
+  background-image: linear-gradient(135deg, #5900ff, #05ffd5, #b13ddf);
 }
 
 #new-game:hover, 
@@ -947,7 +909,6 @@ li .delete-button,
   transform: scale(1.05);
 }
 
-/* Winning animation */
 @keyframes winAnimation {
   0% {
     transform: scale(1);
@@ -965,8 +926,6 @@ li .delete-button,
 }
 
 
-
-/* ... other styles for index.html ... */
 .tab-icon {
   width: 30px; 
   height: 30px;
@@ -994,7 +953,6 @@ li .delete-button,
   }
 }
 
-/* typing test */
 
 
 #typingTestWidget {
@@ -1019,7 +977,6 @@ textarea {
   margin: 4px 0;
 }
 
-/* ... weather 5 day ... */
 
 #fiveDayForecast ul {
   list-style: none;
@@ -1047,10 +1004,9 @@ textarea {
 #fiveDayForecast .temp {
   font-weight: bold;
   font-size: 1.2em;
-  color: #2196F3; /* A distinct blue color */
+  color: #2196F3;
 }
 
-/* ... air polution ... */
 
 #airPollutionWidget ul {
   list-style: none;
@@ -1073,7 +1029,6 @@ textarea {
   font-size: 0.9em;
 }
 
-/* MAP */
 
 
 #map-widget {
