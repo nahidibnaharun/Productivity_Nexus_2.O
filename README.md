@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  🔗 <a href="https://nahidibnaharun1.netlify.app/">Live Website</a> • 📩 <a href="gmail:nahidibnaharun@gmail.com">Contact</a>
+  🔗 <a href="https://nahidibnaharun1.netlify.app/">Live Website</a> • 📩 <a href="mailto:nahidibnaharun@gmail.com">Contact</a>
 </p>
 
 ---
