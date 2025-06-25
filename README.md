@@ -1,76 +1,94 @@
+<h1 align="center">🚀 Productivity Nexus</h1>
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/nahidibnaharun/TODO-Webs-CP-Roadmap/main/assets/logo.png" alt="Productivity Nexus" width="120"/>
-  <h1 align="center">Productivity Nexus</h1>
-  <p align="center">All-in-one dashboard to manage tasks, events, health, and focus.</p>
-  <p align="center">
-    <a href="https://nahidibnaharun1.netlify.app/"><strong>🚀 Live Demo</strong></a>
-    •
-    <a href="#features">✨ Features</a>
-    •
-    <a href="#screenshots">📸 Preview</a>
-    •
-    <a href="#tech-stack">📦 Tech</a>
-    •
-    <a href="#setup">⚙️ Setup</a>
-  </p>
+  A complete <strong>productivity platform</strong> for students and professionals to manage tasks, track performance, and stay focused — all in one place.
+</p>
+
+<p align="center">
+  🔗 <a href="https://nahidibnaharun1.netlify.app/">Live Website</a> • 📩 <a href="mailto:nahidibnaharun@gmail.com">Contact</a>
 </p>
 
 ---
 
-## ✨ Features
+## 📌 Features Overview
 
-<p align="center">
-  <img src="https://img.shields.io/badge/🗂️-Tasks-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/⏰-Timers-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/💧-Hydration-cyan?style=flat-square" />
-  <img src="https://img.shields.io/badge/📊-Score-magenta?style=flat-square" />
-  <img src="https://img.shields.io/badge/🌦️-Weather-yellow?style=flat-square" />
-  <img src="https://img.shields.io/badge/🎮-Games-purple?style=flat-square" />
-</p>
-
----
-
-## 📸 Preview
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/nahidibnaharun/Productivity_Nexus/main/screenshots/dashboard.png" width="240" alt="Dashboard" />
-  <img src="https://raw.githubusercontent.com/nahidibnaharun/Productivity_Nexus/main/screenshots/tasks.png" width="240" alt="Tasks" />
-  <img src="https://raw.githubusercontent.com/nahidibnaharun/Productivity_Nexus/main/screenshots/er-diagram.png" width="240" alt="ER Diagram" />
-</p>
-
----
-
-## 📦 Tech Stack
-
-<p align="center">
-  <img src="https://img.shields.io/badge/HTML5-✍️-orange?style=flat-square" />
-  <img src="https://img.shields.io/badge/CSS3-🎨-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/JavaScript-🚀-yellow?style=flat-square" />
-  <img src="https://img.shields.io/badge/PHP-🛠️-purple?style=flat-square" />
-  <img src="https://img.shields.io/badge/MySQL-💾-skyblue?style=flat-square" />
-</p>
+| Category               | Functionality                                                              |
+|------------------------|---------------------------------------------------------------------------|
+| ✅ Task Management      | Create, organize, and prioritize daily tasks                              |
+| 🗓️ Event Scheduling     | Add events with due dates and calendar view                               |
+| ⏰ Smart Reminders       | Custom alerts for tasks and deadlines                                     |
+| 📈 Productivity Scoring | Auto-calculated score based on your task completion                      |
+| 💧 Water Tracker        | Track hydration throughout the day                                        |
+| 🧘 Mindfulness Timer    | Guided breathing & relaxation exercises                                   |
+| ⏳ Focus Session Timer  | Pomodoro-style & custom work/break timers                                 |
+| 💱 Currency Converter   | Convert real-time exchange rates                                          |
+| 🌤️ Weather & Air Info   | Local forecast and air quality index                                     |
+| 📚 Book Logger          | Add books, track pages read and mark completed                           |
+| 📝 Notes                | Save thoughts, ideas, or to-do items                                      |
+| 🎮 Mini Games           | Sudoku, Memory Match for mental refresh                                  |
+| ⌨️ Typing Speed Test    | Improve and measure typing performance                                   |
+| 🗺️ Map Marker           | Drop and manage pins on an interactive map                                |
+| 🔐 Auth System          | User registration, login, and personalized features                      |
+| 🛠️ Admin Dashboard      | Full admin control panel to manage users and settings                    |
 
 ---
 
-## ⚙️ Setup
+## 💻 Tech Stack
 
-1. **Install XAMPP**  
-   [apachefriends.org](https://www.apachefriends.org/)  
-2. **Import Database**  
-   - Open phpMyAdmin → Import `productivity_db.sql`  
-3. **Start Services**  
-   - Apache & MySQL in XAMPP Control Panel  
-4. **Run Locally**  
-   - Place project in `htdocs/` → visit `http://localhost/productivity_nexus/`
+| Layer         | Tools Used               |
+|---------------|---------------------------|
+| **Frontend**  | HTML, CSS, JavaScript     |
+| **Backend**   | PHP                       |
+| **Database**  | MySQL                     |
+| **Local Dev** | XAMPP (Apache + MySQL)    |
 
 ---
 
-## 📬 Contact
+## ⚙️ Installation Guide
+
+> For local development with XAMPP
+
+1. ✅ **Install XAMPP**  
+   → [https://www.apachefriends.org/](https://www.apachefriends.org/)
+
+2. 🗃️ **Import Database**  
+   - Launch `phpMyAdmin`  
+   - Create DB → Import `productivity_db.sql`
+
+3. 📂 **Setup Project Folder**  
+   - Place project files in `htdocs/`
+
+4. ▶️ **Start Apache & MySQL**  
+   - Run via XAMPP Control Panel
+
+5. 🌐 **Access Website**  
+   → `http://localhost/productivity_nexus/`
+
+---
+
+## 📸 Screenshots
+
+| Dashboard | Task Tracker | ER Diagram |
+|----------|---------------|------------|
+| ![Dashboard](https://github.com/user-attachments/assets/5cbedac1-520b-4739-9980-bf620862f37f) | ![Tasks](https://github.com/user-attachments/assets/fd77d993-7250-458e-a307-1f658f68b780) | ![ER Diagram](https://github.com/user-attachments/assets/98b8a069-419f-4ac0-9833-ebd9ef4a0ddb) |
+
+---
+
+## 🧩 Database Model
+
+![Class Diagram](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
+
+---
+
+## 👤 Author
 
 **Nahid Ibna Harun**  
-📧 [nahidibnaharun@gmail.com](mailto:nahidibnaharun@gmail.com)  
-🔗 [GitHub](https://github.com/nahidibnaharun) • [CF](https://codeforces.com/profile/mdnahidibnaharun)
+- 🔗 GitHub: [@nahidibnaharun](https://github.com/nahidibnaharun)  
+- 💡 Codeforces: [mdnahidibnaharun](https://codeforces.com/profile/mdnahidibnaharun)  
+- 📩 Email: [nahidibnaharun@gmail.com](mailto:nahidibnaharun@gmail.com)
 
 ---
 
-<p align="center">Made with ❤️ &amp; ☕</p>
+<p align="center">
+  <em>“Productivity isn't about doing more — it's about doing what matters.”</em>
+</p>
