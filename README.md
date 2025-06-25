@@ -1,88 +1,112 @@
-# 🚀 Productivity Nexus
+<h1 align="center">🧠 Productivity Nexus</h1>
 
-A complete **productivity platform** designed for students and professionals to manage tasks, stay focused, and improve lifestyle habits — all in one dashboard.
+<p align="center">
+A complete productivity dashboard for students and professionals. <br>
+Helps you manage tasks, events, health, and focus — all from one place.
+</p>
 
-🔗 **[Live Website](https://nahidibnaharun1.netlify.app/)**  
-📩 Contact: [nahidibnaharun@gmail.com](mailto:nahidibnaharun@gmail.com)
-
----
-
-## 📌 Features
-
-| Category              | Features                                                                 |
-|-----------------------|--------------------------------------------------------------------------|
-| ✅ Task Management     | Create, edit, prioritize tasks with due dates and categories            |
-| 🗓️ Event Scheduling    | Schedule events with reminders and a visual calendar                   |
-| ⏰ Reminders           | Set custom reminders for tasks/events                                   |
-| 📈 Productivity Score | Track your daily performance based on completion and habits             |
-| 💧 Water Tracker       | Log water intake to maintain hydration                                  |
-| 🧘 Mindfulness         | Breathing exercises to reduce stress and improve focus                  |
-| ⏳ Focus Timer         | Pomodoro-style/customizable focus sessions with breaks                  |
-| 💰 Currency Converter  | Real-time currency conversion                                            |
-| 🌦️ Weather & Air Info | Current weather and air pollution data                                  |
-| 📚 Book Tracker        | Track your reading list and progress                                    |
-| 📝 Notes               | Quick note-taking utility                                               |
-| 🎮 Brain Games         | Sudoku & Memory Match for cognitive refresh                             |
-| ⌨️ Typing Test         | Improve typing speed and accuracy                                       |
-| 🗺️ Mapping Tool        | Place markers and visualize locations                                   |
-| 🔐 User Authentication | Sign up/login system for personalized dashboards                        |
-| 🛠️ Admin Panel         | Admin-level control over users and content                              |
+<p align="center">
+  <a href="https://nahidibnaharun1.netlify.app/"><strong>🌐 Live Demo</strong></a> •
+  <a href="#features">🛠 Features</a> •
+  <a href="#installation--setup">⚙️ Setup</a> •
+  <a href="#screenshots">🖼 Preview</a> •
+  <a href="#technology-stack">📦 Tech Stack</a> •
+  <a href="#contact">📬 Contact</a>
+</p>
 
 ---
 
-## 🛠️ Technology Stack
+## ✨ Overview
 
-| Layer       | Tech Used          |
-|-------------|--------------------|
-| **Frontend**| HTML, CSS, JavaScript |
-| **Backend** | PHP                |
-| **Database**| MySQL              |
-| **Local Dev**| XAMPP             |
+> **Productivity Nexus** is a powerful, multi-feature web platform built for those who want to stay organized, motivated, and focused. With integrated tools like task management, water tracking, Pomodoro timer, book logging, typing tests, and even games — this project is a full ecosystem for personal productivity.
+
+---
+
+## 🔥 Key Features
+
+| 🗂️ Category             | ✨ Description |
+|------------------------|----------------|
+| ✅ **Task Manager**      | Create, edit, and prioritize tasks by deadline & category |
+| 📆 **Event Scheduler**   | Add events with reminders, displayed visually |
+| ⏰ **Reminders**         | Receive time-based reminders (smart alerts) |
+| 📈 **Productivity Score**| Daily scoring system based on habits & task completion |
+| 💧 **Water Tracker**     | Log and monitor daily hydration |
+| ⏳ **Focus Timer**       | Pomodoro & custom timers with break tracking |
+| 🧘 **Mindfulness**       | Guided breathing and stress-relief timers |
+| 🌦 **Weather & Air**     | Real-time environment info by location |
+| 📚 **Book Tracker**      | Track your reading list, pages, and finish dates |
+| 💬 **Notes**             | Quick notes and ideas saving |
+| 💱 **Currency Converter**| Real-time global currency data |
+| 🧩 **Games**             | Sudoku & Memory Match for breaks |
+| ⌨️ **Typing Test**        | Improve typing speed and track progress |
+| 🗺 **Map Markers**        | Pin locations with custom markers |
+| 🔐 **User Auth**         | Register/Login and track personal data |
+| ⚙️ **Admin Panel**       | Manage users, features, and settings (admin only) |
+
+---
+
+## 🧰 Technology Stack
+
+| Layer        | Tools Used                |
+|--------------|---------------------------|
+| **Frontend** | `HTML`, `CSS`, `JavaScript` |
+| **Backend**  | `PHP`                     |
+| **Database** | `MySQL`                  |
+| **Local Dev**| `XAMPP`                  |
 
 ---
 
 ## ⚙️ Installation & Setup
 
+> ⚠️ Localhost setup required (XAMPP)
+
 1. **Install XAMPP**  
-   🔗 [Download XAMPP](https://www.apachefriends.org/)
+   👉 [Download here](https://www.apachefriends.org/)
 
-2. **Import Database**  
-   - Open phpMyAdmin  
-   - Import `productivity_db.sql` into a new database
+2. **Place project folder** inside `htdocs` directory of XAMPP
 
-3. **Start Server**  
-   - Start **Apache** and **MySQL** from XAMPP
+3. **Import database**  
+   - Open `phpMyAdmin`
+   - Import `productivity_db.sql` from this repo
 
-4. **Run Project**  
-   - Place the project folder inside `htdocs`  
-   - Open browser and go to:  
-     `http://localhost/productivity_nexus/`
+4. **Start Services**  
+   - Run **Apache** & **MySQL** from XAMPP control panel
+
+5. **Run project**  
+   Visit: `http://localhost/productivity_nexus/`
 
 ---
 
-## 🖼️ Screenshots
+## 🖼 Screenshots
 
-> 📌 UI Preview, Dashboards, Trackers
-
-| Dashboard | Task Tracker | ER Diagram |
+| Dashboard | Task Manager | ER Diagram |
 |----------|---------------|------------|
-| ![image](https://github.com/user-attachments/assets/5cbedac1-520b-4739-9980-bf620862f37f) | ![Screenshot_15-9-2024_203029_](https://github.com/user-attachments/assets/fd77d993-7250-458e-a307-1f658f68b780) | ![ER_DIAGRAM](https://github.com/user-attachments/assets/98b8a069-419f-4ac0-9833-ebd9ef4a0ddb) |
+| ![Dashboard](https://github.com/user-attachments/assets/5cbedac1-520b-4739-9980-bf620862f37f) | ![Tasks](https://github.com/user-attachments/assets/fd77d993-7250-458e-a307-1f658f68b780) | ![ER Diagram](https://github.com/user-attachments/assets/98b8a069-419f-4ac0-9833-ebd9ef4a0ddb) |
+
+> 🎯 *Built with modular code, responsive layout, and real-world utility in mind.*
 
 ---
 
-## 🧩 Database ER Diagram
+## 🗃️ ER Diagram
 
-![Class_DIAGRAM](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
+![Class Diagram](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
 
 ---
 
-## 📬 Author
+## 🚀 Live Demo
+
+🌐 **Hosted on Netlify:**  
+👉 [https://nahidibnaharun1.netlify.app/](https://nahidibnaharun1.netlify.app/)
+
+---
+
+## 🧑‍💻 Author
 
 **Nahid Ibna Harun**  
-- GitHub: [@nahidibnaharun](https://github.com/nahidibnaharun)  
-- Codeforces: [mdnahidibnaharun](https://codeforces.com/profile/mdnahidibnaharun)  
-- Email: [nahidibnaharun@gmail.com](mailto:nahidibnaharun@gmail.com)
+🔗 GitHub: [@nahidibnaharun](https://github.com/nahidibnaharun)  
+📧 Email: [nahidibnaharun@gmail.com](mailto:nahidibnaharun@gmail.com)  
+🌐 Codeforces: [mdnahidibnaharun](https://codeforces.com/profile/mdnahidibnaharun)
 
 ---
 
-> ✨ _“Productivity isn't about doing more — it's about doing what matters.”_
+> 💡 _“Productivity isn't just about doing more — it's about doing what matters most.”_
