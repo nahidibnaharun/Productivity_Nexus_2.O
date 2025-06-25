@@ -1,57 +1,88 @@
-# Productivity Nexus
+# 🚀 Productivity Nexus
 
-## Introduction
+A complete **productivity platform** designed for students and professionals to manage tasks, stay focused, and improve lifestyle habits — all in one dashboard.
 
-Productivity Nexus is a web-based platform designed to help users, particularly students, manage their time effectively, track their progress, and boost their overall productivity. It offers a range of features to support organization, focus, and motivation. 
+🔗 **[Live Website](https://nahidibnaharun1.netlify.app/)**  
+📩 Contact: [nahidibnaharun@gmail.com](mailto:nahidibnaharun@gmail.com)
 
-## Features
+---
 
-* **Task Management:** Create, edit, organize, and prioritize tasks with due dates and categories.
-* **Event Scheduling:** Schedule events with reminders and visualize your schedule.
-* **Reminders:**  Set customizable reminders for tasks, events, and other important activities.
-* **Productivity Score Tracking:** Get a detailed score based on task completion and reminder adherence.
-* **Water Intake Tracker:** Log your water intake throughout the day to stay hydrated.
-* **Focus Timer:** Utilize a focus timer (Pomodoro-style or customizable) for focused work sessions and breaks.
-* **Mindfulness Exercises:** Engage in guided breathing exercises to manage stress and improve focus.
-* **Currency Converter:**  Convert currencies in real-time for international transactions or travel.
-* **Weather & Air Pollution Information:** Access weather forecasts and air quality data for your location.
-* **Book Tracker:**  Keep track of your reading progress, including titles, dates, and completion status.
-* **Notes:** Jot down quick notes, ideas, or reminders.
-* **Games (Sudoku, Memory Match):**  Play brain-training games to enhance cognitive skills and take a break.
-* **Typing Test:**  Improve your typing speed and accuracy.
-* **Mapping:**  Place markers on a map to visualize locations, track progress, or create visual reminders.
-* **User Authentication:** Create an account to access personalized features.
-* **Admin Panel:** Manage user accounts (create, delete) and other system features.
+## 📌 Features
 
-## Technology Stack
+| Category              | Features                                                                 |
+|-----------------------|--------------------------------------------------------------------------|
+| ✅ Task Management     | Create, edit, prioritize tasks with due dates and categories            |
+| 🗓️ Event Scheduling    | Schedule events with reminders and a visual calendar                   |
+| ⏰ Reminders           | Set custom reminders for tasks/events                                   |
+| 📈 Productivity Score | Track your daily performance based on completion and habits             |
+| 💧 Water Tracker       | Log water intake to maintain hydration                                  |
+| 🧘 Mindfulness         | Breathing exercises to reduce stress and improve focus                  |
+| ⏳ Focus Timer         | Pomodoro-style/customizable focus sessions with breaks                  |
+| 💰 Currency Converter  | Real-time currency conversion                                            |
+| 🌦️ Weather & Air Info | Current weather and air pollution data                                  |
+| 📚 Book Tracker        | Track your reading list and progress                                    |
+| 📝 Notes               | Quick note-taking utility                                               |
+| 🎮 Brain Games         | Sudoku & Memory Match for cognitive refresh                             |
+| ⌨️ Typing Test         | Improve typing speed and accuracy                                       |
+| 🗺️ Mapping Tool        | Place markers and visualize locations                                   |
+| 🔐 User Authentication | Sign up/login system for personalized dashboards                        |
+| 🛠️ Admin Panel         | Admin-level control over users and content                              |
 
-* **Front-End:** HTML, CSS, JavaScript
-* **Back-End:** PHP
-* **Database:** MySQL
-* **Local Server:** XAMPP (for development)
+---
 
-## Installation and Setup
+## 🛠️ Technology Stack
 
-1. **Install XAMPP:** Download and install XAMPP from [https://www.apachefriends.org/](https://www.apachefriends.org/).
-2. **Import Database:**  Import the `productivity_db.sql` file (provided in the repository) into your MySQL database within XAMPP.
-3. **Configure PHP:** Ensure that PHP is enabled in your XAMPP control panel.
-4. **Start Server:** Start the Apache web server and MySQL database in the XAMPP control panel.
-5. **Access Website:**  Open your web browser and navigate to `http://localhost/productivity_nexus` (or the directory where your project files are located).
+| Layer       | Tech Used          |
+|-------------|--------------------|
+| **Frontend**| HTML, CSS, JavaScript |
+| **Backend** | PHP                |
+| **Database**| MySQL              |
+| **Local Dev**| XAMPP             |
 
+---
 
+## ⚙️ Installation & Setup
 
-## Contact
+1. **Install XAMPP**  
+   🔗 [Download XAMPP](https://www.apachefriends.org/)
 
-Feel free to contact me at [nahidibnaharun@gmail.com] with any questions or feedback.
+2. **Import Database**  
+   - Open phpMyAdmin  
+   - Import `productivity_db.sql` into a new database
 
-## Screenshots
+3. **Start Server**  
+   - Start **Apache** and **MySQL** from XAMPP
 
-![image](https://github.com/user-attachments/assets/5cbedac1-520b-4739-9980-bf620862f37f)
-![Screenshot_15-9-2024_203029_](https://github.com/user-attachments/assets/fd77d993-7250-458e-a307-1f658f68b780)
-ER DIAGRAM:
-![Class_DIAGEAM](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
-![ER DIAGRAM]:![ER_DIAGRAM](https://github.com/user-attachments/assets/98b8a069-419f-4ac0-9833-ebd9ef4a0ddb)
+4. **Run Project**  
+   - Place the project folder inside `htdocs`  
+   - Open browser and go to:  
+     `http://localhost/productivity_nexus/`
 
+---
 
+## 🖼️ Screenshots
 
-LIVE LINK:https://nahidibnaharun1.netlify.app/
+> 📌 UI Preview, Dashboards, Trackers
+
+| Dashboard | Task Tracker | ER Diagram |
+|----------|---------------|------------|
+| ![image](https://github.com/user-attachments/assets/5cbedac1-520b-4739-9980-bf620862f37f) | ![Screenshot_15-9-2024_203029_](https://github.com/user-attachments/assets/fd77d993-7250-458e-a307-1f658f68b780) | ![ER_DIAGRAM](https://github.com/user-attachments/assets/98b8a069-419f-4ac0-9833-ebd9ef4a0ddb) |
+
+---
+
+## 🧩 Database ER Diagram
+
+![Class_DIAGRAM](https://github.com/user-attachments/assets/857b2f99-a909-440e-a5b0-cef7800d8d1d)
+
+---
+
+## 📬 Author
+
+**Nahid Ibna Harun**  
+- GitHub: [@nahidibnaharun](https://github.com/nahidibnaharun)  
+- Codeforces: [mdnahidibnaharun](https://codeforces.com/profile/mdnahidibnaharun)  
+- Email: [nahidibnaharun@gmail.com](mailto:nahidibnaharun@gmail.com)
+
+---
+
+> ✨ _“Productivity isn't about doing more — it's about doing what matters.”_
